@@ -34,8 +34,26 @@ class Image
      * @ORM\Column(name="alt", type="string", length=255)
      */
     private $alt;
+    
+    private $file;
+    private $tempFileName;
 
-
+    public function getFile()
+    {
+        return $this->file;
+    }
+    
+    public function setFile(\Symfony\Component\HttpFoundation\File\UploadedFile $file = null)
+    {
+        $this->file = $file;
+        
+        if (null !== $this->url)
+        {
+            $this->tempFileName = $this->url;
+            $this->url=null;
+            $this->alt=null;
+        }
+    }
     /**
      * Get id
      *
@@ -93,5 +111,84 @@ class Image
     {
         return $this->alt;
     }
+    
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null === $this->file)
+        {
+            return;
+        }
+        
+        
+        //On add un extension pour le fichier.
+        $this->url = $this->file->guessExtensions();
+        //Le alt est le nom du fichier du client.
+        $this->alt=  $this->file->getClientOriginalName();
+    }
+    
+    /**
+     * 
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     * 
+     */
+    public function upload()
+    {
+        if(null=== $this->file)
+        {
+            return;
+        }
+        
+        //Si ancien fichier on supprime
+        if(null !== $this->tempFileName)
+        {
+            $oldFile = $this->getUploadRootDir().'/'.$this->id.'.'.$this->tempFileName;
+            if (file_exists($oldFile))
+            {
+                unlink($oldFile);
+            }
+        }
+        
+        //On deplace
+        $this->file->move
+        (
+            $this->getUploadRootDir(),
+            $this->id.'.'.$this->url    
+        );
+    }
+    
+    /**
+     *@ORM\PreRemove()s 
+     */
+    public function preRemoveUpload()
+    {
+        $this->tempFileName = $this->getUploadRootDir().'/'.$this->id.'.'.$this->url;
+    }
+    
+    /**
+     * 
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if(file_exists($this->tempFileName))
+        {
+            unlink($this->tempFileName);
+        }
+    }
+    public function getUploadDir()
+    {
+        return 'upload/img';
+    }
+    
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+    
+    
 }
-

@@ -12,4 +12,8 @@ ad_platform_myfavs:
 
 ad_platform_newcar:
     path:     /admin/newcar
-    defaults: { _controller: ADPlatformBundle:Default:newcar }
+    defaults: { _controller: ADPlatformBundle:Default:newCar }
+
+ad_platform_editcar:
+    path:       /admin/editcar
+    defaults:   {_controller: ADPlatformBundle:Default:editCar}

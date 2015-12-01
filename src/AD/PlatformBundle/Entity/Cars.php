@@ -69,7 +69,12 @@ class Cars
      * @ORM\Column(name="description", type="text")
      */
     private $description;
-
+    
+    /**
+     *
+     * @ORM\OneToOne(targetEntity="AD\PlatformBundle\Entity\Image", cascade={"persist"})
+     */
+    private $image;
 
     /**
      * Get id
@@ -248,5 +253,28 @@ class Cars
     {
         return $this->description;
     }
-}
 
+    /**
+     * Set image
+     *
+     * @param \AD\PlatformBundle\Entity\Image $image
+     *
+     * @return Cars
+     */
+    public function setImage(\AD\PlatformBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \AD\PlatformBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+}
