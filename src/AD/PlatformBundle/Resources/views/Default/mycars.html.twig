@@ -1,0 +1,60 @@
+{# src/AD/PlatformBundle/Resources/views/Default/mycars.html.twig #}
+
+{% extends "ADPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+    Mes voitures | {{parent()}}
+{% endblock %}
+
+
+{% block content %}
+        <div class="row">
+            <div class="col-lg-12">    
+                <h3><span class="fa fa-car"></span> Vos voitures</h3>
+                <div class="col-md-4 text-center">
+                    <h3>Mercedes </h3>
+                    <h4>190SL</h4>
+                    <h6>1955</h6>
+                    <img src="{{asset('img/mercedes/190sl/190-1.jpg')}}" alt="" height="132" width="200"/>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h3>Jaguar</h3>
+                    <h4>Type e</h4>
+                    <h6>1970</h6>
+                    <img src="{{asset('img/jaguar/typee-1.jpg')}}" alt="" height="132" width="200"/>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h3>MG</h3>
+                    <h4>Midget</h4>
+                    <h6>1964</h6>
+                    <img src="{{asset('img/mg/midget-1.jpg')}}" alt="" height="132" width="200"/>
+                </div>
+            </div>    
+        </div>
+        <div class="row">
+            <div class="col-lg-12">    
+                <div class="col-md-4 text-center">
+                    <h3>Ferrari</h3>
+                    <h4>250GTO</h4>
+                    <h6>1963</h6>
+                    <img src="{{asset('img/ferrari/250gto-1.jpg')}}" alt="" height="132" width="200"/>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h3>Porsche</h3>
+                    <h4>356</h4>
+                    <h6>1963</h6>
+                    <img src="{{asset('img/porsche/356-1.jpg')}}" alt="" height="132" width="200"/>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h3>Lancia</h3>
+                    <h4>Stratos</h4>
+                    <h6>1973</h6>
+                    <img src="{{asset('img/lancia/stratos-1.jpg')}}" alt="" height="132" width="200"/>
+                </div>
+                <h5 id="plusde" class="text-right">Plus de favoris ...</h5>
+            </div>    
+        </div>
+
+        <!-- /.row -->
+{% endblock %}
+

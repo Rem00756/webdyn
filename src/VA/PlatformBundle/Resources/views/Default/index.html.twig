@@ -1,0 +1,34 @@
+{# src/VA/PlatformBundle/Resources/views/Default/index.html.twig #}
+
+{% extends "VAPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+    Home | {{parent()}}
+{% endblock %}
+
+
+{% block body %}
+    {% block nav %}
+       {{parent()}} 
+    {% endblock %}
+ 
+    {% block content %}
+        <div id="index">
+            <div class="container">
+                <div class="intro-text">
+                    <div class="intro-lead-in">Bienvenue sur votre ancetre.be</div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" autofocus>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default glyphicon glyphicon-search" type="button"></button>
+                        </span>
+                    </div>
+                    <div class="intro-heading">Trouver votre voiture !</div>
+                </div>
+            </div>
+        </div>
+        {% block footer %}{% endblock %}
+    {% endblock %}
+    
+{% endblock %}
+

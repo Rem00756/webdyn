@@ -1,0 +1,45 @@
+{# src/VA/PlatformBundle/Resources/views/Default/faq.html.twig #}
+
+{% extends "VAPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+    FAQ | {{parent()}}
+{% endblock %}
+
+{% block body %}
+    {% block nav %}
+       {{parent()}} 
+    {% endblock %}
+ 
+    {% block content %}
+        <section id="services">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">FAQ</h2>
+                    </div>
+                </div>
+                <div id="faq">
+                    <ul>
+                        <li>
+                            <h3>Quel est le but de "Vos ancêtre.be" ?</h3>
+                            <p>Le premier but est de regrouper le maximum d'information de voiture ancienne 
+                            pour que l'amateur puisse y trouver rapidement les informations qu'il cherche.
+                            Le second but est lors de concentration de voiture, le propriétaire pourra a l'aide
+                            d'un QrCode appliqué sur sa voiture, présenter son modèle au publique en possession 
+                            d'un smartphone.</p>
+                        </li>
+                        <li>
+                            <h3>Qu'est ce qu'un QrCode ?</h3>
+                            <p>Le code QR (de l'anglais, QR Code) est une sorte de code barre en 2D.
+                            Pour lire un QR Code, il suffit de lancer l'application de lecture et viser le code dans le mobile.
+                            <br/>
+                            Exemple:</p>
+                            <div class="text-center" id="qrcode"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+{% endblock %}

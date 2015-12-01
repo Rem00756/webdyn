@@ -1,0 +1,28 @@
+{# app/Resources/views/layout.html.twig #}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Vos ancetres{% endblock %}</title>
+        <meta name="description" content="{% block meta_description %}{% endblock %}">
+        <meta name="author" content="{% block meta_author %}{% endblock %}">
+        <link rel="icon" type="image/png" href="{% block icon %}{{asset('img/checkered12.png')}}{% endblock %}" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block css %}
+        {% endblock %}    
+    </head>
+    <body id="{%block body_id %}{%endblock%}" class="{%block body_class %}{%endblock%}">
+        {% block body %}
+        
+            
+        {% endblock %}
+        
+        {% block footer %}
+        {% endblock %}
+            
+        {% block javascripts %}
+        {% endblock %}
+    </body>
+</html>

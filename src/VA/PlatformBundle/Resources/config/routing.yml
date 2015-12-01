@@ -1,0 +1,25 @@
+va_platform_home:
+    path: /home
+    defaults: {_controller : VAPlatformBundle:Default:index}
+
+va_platform_search:
+    path: /research
+    defaults: {_controller : VAPlatformBundle:Default:research}
+
+va_platform_car:
+    path: /car/{id}
+    defaults: {_controller : VAPlatformBundle:Default:car, id: 1}
+    requirements:
+        id: \d+
+
+va_platform_faq:
+    path: /faq
+    defaults: {_controller : VAPlatformBundle:Default:faq}
+    
+va_platform_login:
+    path: /login
+    defaults: {_controller : VAPlatformBundle:Default:login}
+
+va_platform_register:
+    path: /register
+    defaults: {_controller: VAPlatformBundle:Default:register}

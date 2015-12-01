@@ -1,0 +1,8 @@
+va_platform:
+    resource: "@VAPlatformBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ad_platform:
+    resource: "@ADPlatformBundle/Resources/config/routing.yml"
+    prefix:   /
+
