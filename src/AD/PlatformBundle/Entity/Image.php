@@ -3,12 +3,14 @@
 namespace AD\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Image
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity()
+ * @ORM\HasLifecycleCallbacks
  */
 class Image
 {
@@ -125,9 +127,10 @@ class Image
         
         
         //On add un extension pour le fichier.
-        $this->url = $this->file->guessExtensions();
+        $this->url = $this->file->guessExtension();
         //Le alt est le nom du fichier du client.
         $this->alt=  $this->file->getClientOriginalName();
+        
     }
     
     /**
@@ -162,7 +165,7 @@ class Image
     }
     
     /**
-     *@ORM\PreRemove()s 
+     *@ORM\PreRemove()
      */
     public function preRemoveUpload()
     {

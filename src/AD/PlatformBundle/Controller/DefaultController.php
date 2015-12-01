@@ -32,7 +32,7 @@ class DefaultController extends Controller
         
         if($form->handleRequest($request)->isValid())
         {
-            $cars->getImage()->upload();
+            //$cars->getImage()->upload();
             $em = $this->getDoctrine()->getManager();
             $em->persist($cars);
             $em->flush();
