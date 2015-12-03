@@ -1,0 +1,21 @@
+{# src/AD/PlatformBundle/Resources/views/Cars/mycars.html.twig #}
+
+{% extends "ADPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+    Mes voitures | {{parent()}}
+{% endblock %}
+
+
+{% block content %}
+        <div class="row">
+            <div class="col-lg-12">    
+                <h3><span class="fa fa-car"></span> Vos voitures</h3>
+                 {{ render(controller("ADPlatformBundle:Cars:menu")) }}
+            </div>    
+        </div>
+        
+
+        <!-- /.row -->
+{% endblock %}
+

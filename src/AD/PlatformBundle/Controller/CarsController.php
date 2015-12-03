@@ -8,21 +8,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 
-class DefaultController extends Controller
+class CarsController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('ADPlatformBundle:Default:index.html.twig');
+        return $this->render('ADPlatformBundle:Cars:index.html.twig');
     }
     
     public function myCarsAction()
     {
-        return $this->render('ADPlatformBundle:Default:mycars.html.twig');
+        return $this->render('ADPlatformBundle:Cars:mycars.html.twig');
     }
     
     public function myFavsAction()
     {
-        return $this->render('ADPlatformBundle:Default:myfavs.html.twig');
+        return $this->render('ADPlatformBundle:Cars:myfavs.html.twig');
     }
     
     public function newCarAction(Request $request)
@@ -44,7 +44,7 @@ class DefaultController extends Controller
        
         
         
-        return $this->render('ADPlatformBundle:Default:newcar.html.twig', array(
+        return $this->render('ADPlatformBundle:Cars:newcar.html.twig', array(
             'form' =>$form->createView(),
         ));
     }
@@ -75,8 +75,24 @@ class DefaultController extends Controller
        
         
         
-        return $this->render('ADPlatformBundle:Default:newcar.html.twig', array(
+        return $this->render('ADPlatformBundle:Cars:newcar.html.twig', array(
             'form' =>$form->createView(),
         ));
+    }
+    public function menuAction($limit = 6)
+    {
+      $listCars = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('ADPlatformBundle:Cars')
+        ->findBy(
+          array(),                 // Pas de critère
+          array('id' => 'desc'), // On trie par date décroissante
+          $limit,                  // On sélectionne $limit annonces
+          0                        // À partir du premier
+      );
+
+      return $this->render('ADPlatformBundle:Cars:menu.html.twig', array(
+        'listCars' => $listCars
+      ));
     }
 }

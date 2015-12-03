@@ -1,19 +1,19 @@
 ad_platform_home:
     path:     /admin/home
-    defaults: { _controller: ADPlatformBundle:Default:index }
+    defaults: { _controller: ADPlatformBundle:Cars:index }
 
 ad_platform_mycars:
     path:     /admin/mycars
-    defaults: { _controller: ADPlatformBundle:Default:myCars }
+    defaults: { _controller: ADPlatformBundle:Cars:myCars }
 
 ad_platform_myfavs:
     path:     /admin/myfavs
-    defaults: { _controller: ADPlatformBundle:Default:myFavs }
+    defaults: { _controller: ADPlatformBundle:Cars:myFavs }
 
 ad_platform_newcar:
     path:     /admin/newcar
-    defaults: { _controller: ADPlatformBundle:Default:newCar }
+    defaults: { _controller: ADPlatformBundle:Cars:newCar }
 
 ad_platform_editcar:
     path:       /admin/editcar
-    defaults:   {_controller: ADPlatformBundle:Default:editCar}
+    defaults:   {_controller: ADPlatformBundle:Cars:editCar}

@@ -1,0 +1,13 @@
+<ul class="nav nav-pills nav-stacked">
+  {% for cars in listCars %}
+    <li>
+          <div class="col-md-4 text-center">
+              <h3>{{ cars.name}}</h3>
+              <h4>{{cars.model}}</h4>
+              <h4>{{cars.year}}</h4>
+              <h4>{{cars.displacement}}</h4>
+              <img src="" alt="" height="132" width="200"/>
+          </div>
+    </li>
+  {% endfor %}
+</ul>
