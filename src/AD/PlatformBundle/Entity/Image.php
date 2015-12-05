@@ -45,7 +45,7 @@ class Image
         return $this->file;
     }
     
-    public function setFile(\Symfony\Component\HttpFoundation\File\UploadedFile $file = null)
+    public function setFile(\Symfony\Component\HttpFoundation\File\UploadedFile $file)
     {
         $this->file = $file;
         
@@ -193,5 +193,8 @@ class Image
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
     }
     
-    
+    public function __toString()
+    {
+        return $this->getUrl();
+    }
 }
