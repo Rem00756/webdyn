@@ -17,7 +17,7 @@ va_platform_faq:
     defaults: {_controller : VAPlatformBundle:Default:faq}
     
 va_platform_login:
-    path: /login
+    path: /login1
     defaults: {_controller : VAPlatformBundle:Default:login}
 
 va_platform_register:
