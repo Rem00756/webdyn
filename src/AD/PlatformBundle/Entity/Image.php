@@ -195,6 +195,6 @@ class Image
     
     public function __toString()
     {
-        return $this->getUrl();
+        return 'upload/img/'.$this->id.'.'.$this->getUrl();
     }
 }
