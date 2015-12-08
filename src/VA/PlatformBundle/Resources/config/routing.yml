@@ -20,6 +20,3 @@ va_platform_login:
     path: /login1
     defaults: {_controller : VAPlatformBundle:Default:login}
 
-va_platform_register:
-    path: /register
-    defaults: {_controller: VAPlatformBundle:Default:register}

@@ -16,9 +16,14 @@ class DefaultController extends Controller
         return $this->render('VAPlatformBundle:Default:research.html.twig');
     }
     
-    public function carAction()
+    public function carAction($id)
     {
-        return $this->render('VAPlatformBundle:Default:car.html.twig');
+        $voiture = $this->getDoctrine()
+                            ->getManager()
+                            ->getRepository('ADPlatformBundle:Cars')
+                            ->find($id);
+                    
+        return $this->render('VAPlatformBundle:Default:car.html.twig',['voiture' => $voiture]);
     }
     
     public function faqAction()

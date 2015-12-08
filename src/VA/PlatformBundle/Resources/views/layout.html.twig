@@ -51,17 +51,36 @@
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="hidden">
-                            <a href="#page-top"></a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="login">S'indentifier</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="register">S'enregistrer</a>
-                        </li>
-                    </ul>
+                    
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="page-scroll">
+                                    <a class="page-scroll" href="{{path('fos_user_profile_show')}}">{{ app.user.username }}</a>
+                                </li>
+                                <li>
+                                    <a class="page-scroll" href="{{path('ad_platform_mycars')}}">Mes voitures</a>
+                                </li>
+                                <li>
+                                    <a class="page-scroll" href="{{path('ad_platform_myfavs')}}">Mes favoris</a>
+                                </li>
+                                <li>
+                                    <a class="page-scroll" href="{{path('fos_user_security_logout')}}">Se deconnecter</a>
+                                </li>
+                            </ul>    
+                                
+                        {% else %}
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="hidden">
+                                    <a href="#page-top"></a>
+                                </li>
+                                <li>
+                                    <a class="page-scroll" href="{{path('fos_user_security_login')}}">S'indentifier</a>
+                                </li>
+                                <li>
+                                    <a class="page-scroll" href="{{path('fos_user_registration_register')}}">S'enregistrer</a>
+                                </li>
+                            </ul>
+                        {% endif %}
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
