@@ -185,7 +185,7 @@ class Image
     }
     public function getUploadDir()
     {
-        return 'upload/img';
+        return 'upload/img/';
     }
     
     protected function getUploadRootDir()
@@ -195,6 +195,6 @@ class Image
     
     public function __toString()
     {
-        return $this->getUrl();
+        return $this->getUploadDir().$this->id.'.'.$this->getUrl();
     }
 }

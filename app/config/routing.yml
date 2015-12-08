@@ -10,16 +10,6 @@ ad_platform:
     resource: "@ADPlatformBundle/Resources/config/routing.yml"
     prefix:   /
 
-login:
-    pattern: /login
-    defaults: { _controller: ADUserBundle:Security:login}
-    
-login_check:
-    pattern: /login_check
-    
-logout:
-    pattern: /logout
-    
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
