@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Cars
- *
  * @ORM\Table()
  * @ORM\Entity
  */
@@ -75,6 +74,12 @@ class Cars
      * @ORM\OneToOne(targetEntity="AD\PlatformBundle\Entity\Image", cascade={"persist"})
      */
     private $image;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="AD\UserBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     /**
      * Get id
@@ -276,5 +281,31 @@ class Cars
     public function getImage()
     {
         return $this->image;
+    }
+    
+    
+
+    /**
+     * Set user
+     *
+     * @param string $user
+     *
+     * @return Cars
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return string
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

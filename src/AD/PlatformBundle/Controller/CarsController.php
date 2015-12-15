@@ -28,6 +28,7 @@ class CarsController extends Controller
     public function newCarAction(Request $request)
     {
        $cars= new Cars();
+       $cars->setUser($this->getUser());
        $form = $this->get('form.factory')->create(new \AD\PlatformBundle\Form\CarsType(), $cars);
         
         if($form->handleRequest($request)->isValid())
@@ -84,8 +85,8 @@ class CarsController extends Controller
       $listCars = $this->getDoctrine()
         ->getManager()
         ->getRepository('ADPlatformBundle:Cars')
-        ->findBy(
-          array(),                 // Pas de critère
+        ->findByUser(
+          array($this->getUser()),                 // Recupération via le getUser
           array('id' => 'desc'), // On trie par date décroissante
           $limit,                  // On sélectionne $limit annonces
           0                        // À partir du premier
