@@ -32,7 +32,7 @@ class CarsController extends Controller
         
         if($form->handleRequest($request)->isValid())
         {
-            //$cars->getImage()->upload();
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($cars);
             $em->flush();
