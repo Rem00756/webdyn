@@ -18,10 +18,10 @@
                 <div class="intro-text">
                     <div class="intro-lead-in">Bienvenue sur votre ancetre.be</div>
                     <div class="input-group">
-                        <input type="text" class="form-control" autofocus>
-                        <span class="input-group-btn">
-                            <button class="btn btn-default glyphicon glyphicon-search" type="button"></button>
-                        </span>
+                        <form action="{{ path('va_platform_search')}}" method="get">
+                            <input type="text" class="form-control" name="formHome" autofocus>
+                            <input type="submit"/>
+                        </form>
                     </div>
                     <div class="intro-heading">Trouver votre voiture !</div>
                 </div>
