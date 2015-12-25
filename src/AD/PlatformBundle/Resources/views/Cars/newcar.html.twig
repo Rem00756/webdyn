@@ -21,7 +21,100 @@
             <div class="col-md-12">
                 <div class="col-md-4 col-md-offset-2">
                     <div class="well">
-                        {{ form(form)}}
+                        
+                        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                            {# MARQUE#}
+                            <div class="form-group">
+                                {# Génération du label. #}
+                                {{ form_label(form.name, "Marque :", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+                                {# Affichage des erreurs pour ce champ précis. #}
+                                {{ form_errors(form.name) }}
+
+                                <div class="col-sm-8">
+                                  {# Génération de l'input. #}
+                                  {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div> 
+                            {# MODELE #}
+                            <div class="form-group">
+                                {# Génération du label. #}
+                                {{ form_label(form.model, "Nom du modèle :", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+                                {# Affichage des erreurs pour ce champ précis. #}
+                                {{ form_errors(form.model) }}
+
+                                <div class="col-sm-8">
+                                  {# Génération de l'input. #}
+                                  {{ form_widget(form.model, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div> 
+                            {# YEAR#}
+                            <div class="form-group">
+                                {# Génération du label. #}
+                                {{ form_label(form.year, "Année :", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+                                {# Affichage des erreurs pour ce champ précis. #}
+                                {{ form_errors(form.year) }}
+
+                                <div class="col-sm-8">
+                                  {# Génération de l'input. #}
+                                  {{ form_widget(form.year, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div> 
+                            {# DISPLACEMENT #}
+                            <div class="form-group">
+                                {# Génération du label. #}
+                                {{ form_label(form.displacement, "Cylindrée :", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+                                {# Affichage des erreurs pour ce champ précis. #}
+                                {{ form_errors(form.displacement) }}
+
+                                <div class="col-sm-8">
+                                  {# Génération de l'input. #}
+                                  {{ form_widget(form.displacement, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div> 
+                            {# BODYTYPE #}
+                            <div class="form-group">
+                                {# Génération du label. #}
+                                {{ form_label(form.bodytype, "Carrosserie :", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+                                {# Affichage des erreurs pour ce champ précis. #}
+                                {{ form_errors(form.bodytype) }}
+
+                                <div class="col-sm-8">
+                                  {# Génération de l'input. #}
+                                  {{ form_widget(form.bodytype, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div> 
+                            {# FUEL #}
+                            <div class="form-group">
+                                {# Génération du label. #}
+                                {{ form_label(form.fuel, "Carburant :", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+                                {# Affichage des erreurs pour ce champ précis. #}
+                                {{ form_errors(form.fuel) }}
+
+                                <div class="col-sm-8">
+                                  {# Génération de l'input. #}
+                                  {{ form_widget(form.fuel, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div> 
+                            {# DESCRIPTION #}
+                            <div class="form-group">
+                                {# Génération du label. #}
+                                {{ form_label(form.description, "Description :", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+                                {# Affichage des erreurs pour ce champ précis. #}
+                                {{ form_errors(form.description) }}
+
+                                <div class="col-sm-8">
+                                  {# Génération de l'input. #}
+                                  {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div> 
+                        {{form_end(form)}}
                     </div>
                 </div>
                

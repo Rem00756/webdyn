@@ -326,6 +326,8 @@ fieldset[disabled] .btn-xl.active {
 
 section {
     padding: 100px 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 section h2.section-heading {
@@ -344,6 +346,14 @@ section h3.section-subheading {
 }
 
 @media(min-width:768px) {
+    section {
+        background-image: url("../img/street.jpg");
+        padding: 125px 0;
+         
+            
+    }
+}
+@media(min-width:384px) {
     section {
         background-image: url("../img/street.jpg");
         padding: 125px 0;
