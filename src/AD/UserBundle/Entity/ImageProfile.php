@@ -80,8 +80,7 @@ class ImageProfile
     {
         $this->url = $url;
 
-        dump($url);
-        die();
+        
         return $this;
         
     }
