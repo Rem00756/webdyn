@@ -22,24 +22,9 @@
     <div class="row">
         <div class="col-lg-12">    
             <h3><span class="fa fa-star"></span> Vos favoris</h3>
-            <div class="col-md-4 text-center">
-                <h3>Ferrari</h3>
-                <h4>250GTO</h4>
-                <h6>1963</h6>
-                <img src="{{asset('img/ferrari/250gto-1.jpg')}}" alt="" height="132" width="200"/>
-            </div>
-            <div class="col-md-4 text-center">
-                <h3>Porsche</h3>
-                <h4>356</h4>
-                <h6>1963</h6>
-                <img src="{{asset('img/porsche/356-1.jpg')}}" alt="" height="132" width="200"/>
-            </div>
-            <div class="col-md-4 text-center">
-                <h3>Lancia</h3>
-                <h4>Stratos</h4>
-                <h6>1973</h6>
-                <img src="{{asset('img/lancia/stratos-1.jpg')}}" alt="" height="132" width="200"/>
-            </div>
+            
+            {{render(controller("ADPlatformBundle:Cars:menufav"))}}
+            
             <h5 id="plusde" class="text-right">Plus de favoris ...</h5>
         </div>    
     </div>

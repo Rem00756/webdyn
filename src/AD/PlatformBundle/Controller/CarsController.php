@@ -3,6 +3,7 @@
 namespace AD\PlatformBundle\Controller;
 
 use AD\PlatformBundle\Entity\Cars;
+use AD\UserBundle\Entity\User;
 use AD\PlatformBundle\Form\CarsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -86,14 +87,32 @@ class CarsController extends Controller
         ->getManager()
         ->getRepository('ADPlatformBundle:Cars')
         ->findByUser(
-          array($this->getUser()),                 // Recupération via le getUser
-          array('id' => 'desc'), // On trie par date décroissante
-          $limit,                  // On sélectionne $limit annonces
-          0                        // À partir du premier
+          array($this->getUser()),                  // Recupération via le getUser
+          array('id' => 'desc'),                    // On trie par date décroissante
+          $limit,                                   // On sélectionne $limit annonces
+          0                                         // À partir du premier
       );
 
       return $this->render('ADPlatformBundle:Cars:menu.html.twig', array(
         'listCars' => $listCars
       ));
+    }
+    
+    public function menuFavAction($limit = 6)
+    {
+      
+      return $this->render('ADPlatformBundle:Cars:menufav.html.twig');
+    }
+    
+    public function addFavAction(Cars $car)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $user->addFavourite($car);
+       //$fav->addFavorite($this->getUser());
+       $em->persist($user);
+       $em->flush();
+       
+       return $this->render('ADPlatformBundle:Cars:myfavs.html.twig');
     }
 }

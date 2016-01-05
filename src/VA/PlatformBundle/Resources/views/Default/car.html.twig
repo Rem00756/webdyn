@@ -45,7 +45,13 @@
                             <div class="text-right">
                                 <img src="{{asset('img/print.png')}}" alt="print" onclick="javascript:window.print()"/>
                                 <img src="{{asset('img/warning.png')}}" alt="Erreur"/>
-                                <img src="{{asset('img/favourite.png')}}" alt="Favoris"/>
+                                <a 
+                                    href="  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                                {{ path('ad_platform_addfav', {'id': voiture.id}) }}
+                                            {% endif %}">
+                                    <img src="{{asset('img/favourite.png')}}" alt="Favoris" />
+                                </a>
+                                    
                             </div>
                         </div>
                     </div>

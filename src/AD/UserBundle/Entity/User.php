@@ -27,7 +27,10 @@ class User extends BaseUser
      */
     private $imageprofile;
 
-    
+    /**
+     * @ORM\ManyToMany(targetEntity="AD\PlatformBundle\Entity\Cars")
+     */
+    private $favourites;
 
     /**
      * Set imageprofile
@@ -51,5 +54,38 @@ class User extends BaseUser
     public function getImageprofile()
     {
         return $this->imageprofile;
+    }
+
+    /**
+     * Add favourite
+     *
+     * @param \AD\PlatformBundle\Entity\Cars $favourite
+     *
+     * @return User
+     */
+    public function addFavourite(\AD\PlatformBundle\Entity\Cars $favourite)
+    {
+        $this->favourites[] = $favourite;
+        return $this;
+    }
+
+    /**
+     * Remove favourite
+     *
+     * @param \AD\PlatformBundle\Entity\Cars $favourite
+     */
+    public function removeFavourite(\AD\PlatformBundle\Entity\Cars $favourite)
+    {
+        $this->favourites->removeElement($favourite);
+    }
+
+    /**
+     * Get favourites
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFavourites()
+    {
+        return $this->favourites;
     }
 }

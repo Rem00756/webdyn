@@ -24,36 +24,18 @@
                     <div class="col-md-12">
                         <div id="zone_recherche" class="col-md-3">
                             <h5>Recherche :</h5>
-                            <input type="text" name="recherche"/>
-                            <input type="button" value="Go!"/>
-                            <h5>Année :</h5>
-                            <form>
-                                <select name="car-years" id="car-years"></select> 
-                            </form>
-                            <h5>Marque :</h5>
-                            <form>
-                                <select name="car-makes" id="car-makes"></select> 
+                            <div class="input-group">
+                                <form action="{{ path('va_platform_search')}}" method="get">
+                                    <input type="text" class="form-control" name="formHome" autofocus>
+                                    
+                                    <button type="submit" id="button_recherche" class="btn btn-default btn-lg">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Go!
+                                    </button>
+                                </form>
+                            </div>
+                            
 
-                            </form>
-                            <h5>Modèle :</h5>
-                            <form>
-                                <select name="car-models" id="car-models"></select>
-                                <select name="car-model-trims" id="car-model-trims"></select>
-                            </form>
-
-                            <h5>Carrosserie :</h5>
-                            <form>
-                                <select name="marque">
-                                    <option>Berline</option>
-                                    <option>Coupé</option>
-                                    <option>Cabriolet</option>
-                                    <option>Break</option>
-                                </select>
-                            </form>
-
-                            <button type="button" id="button_recherche" class="btn btn-default btn-lg">
-                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Go!
-                            </button>
+                            
 
                         </div>   
                         <div id="resultat_voiture" class="col-md-9">
