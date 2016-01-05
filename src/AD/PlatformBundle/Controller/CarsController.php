@@ -109,9 +109,8 @@ class CarsController extends Controller
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $user->addFavourite($car);
-       //$fav->addFavorite($this->getUser());
-       $em->persist($user);
-       $em->flush();
+        $em->persist($user);
+        $em->flush();
        
        return $this->render('ADPlatformBundle:Cars:myfavs.html.twig');
     }
