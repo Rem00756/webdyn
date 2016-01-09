@@ -1,15 +1,20 @@
 <ul class="nav nav-pills nav-stacked">
   {% for cars in listCars %}
     <li>
-          <div class="col-md-4 text-center">
-                 <a href='{{path('va_platform_car',{id:cars.id})}}'>
-                    <h3>{{ cars.name}}</h3>
-                    <h4>{{cars.model}}</h4>
-                    <h4>{{cars.year}}</h4>
-                    <h4>{{cars.displacement}} cm³</h4>
-                    <img src="{{asset(cars.image)}}" alt="" height="132" width="200"/>
-                </a>  
-          </div>
+        <div class="col-md-4 text-center">
+            <a href='{{path('va_platform_car',{id:cars.id})}}'>
+                <h3>{{ cars.name}}</h3>
+                <h4>{{cars.model}}</h4>
+                <h4>{{cars.year}}</h4>
+                <h4>{{cars.displacement}} cm³</h4>
+                <img src="{{asset(cars.image)}}" alt="" height="132" width="200"/>
+            </a>
+            <br />
+            {% if app.user == cars.user %}
+                <a href="{{path('ad_plaform_delete',{id:cars.id})}}"><img src="{{asset('img/delete.png')}}" alt="" /></a>
+                <a href="#"><img src="{{asset('img/edit.png')}}" alt="" /></a>
+            {% endif %}    
+      </div>
     </li>
   {% endfor %}
 </ul>

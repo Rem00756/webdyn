@@ -81,6 +81,23 @@ class CarsController extends Controller
             'form' =>$form->createView(),
         ));
     }
+    public function deleteCarAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $cars = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ADPlatformBundle:Cars')
+            ->find($id)
+        ;
+        
+      
+        $em->remove($cars);
+        $em->flush();
+        
+        return $this->render('ADPlatformBundle:Cars:index.html.twig');
+    }
+    
     public function menuAction($limit = 6)
     {
       $listCars = $this->getDoctrine()
@@ -106,12 +123,24 @@ class CarsController extends Controller
     
     public function addFavAction(Cars $car)
     {
+        
         $em = $this->getDoctrine()->getManager();
+        /**
+         * @var \AD\UserBundle\Entity\User
+         */
         $user = $this->getUser();
-        $user->addFavourite($car);
-        $em->persist($user);
-        $em->flush();
-       
-       return $this->render('ADPlatformBundle:Cars:myfavs.html.twig');
+        
+        // La méthode contains appartiens à getFavourites qui retourne TRUE/FALSE
+        if ($user->getFavourites()->contains($car))
+        { 
+            return $this->render('ADPlatformBundle:Cars:myfavs.html.twig');
+        }
+        else
+        {
+            $user->addFavourite($car);
+            $em->persist($user);
+            $em->flush();
+            return $this->render('ADPlatformBundle:Cars:myfavs.html.twig');
+        }
     }
 }

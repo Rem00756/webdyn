@@ -22,3 +22,6 @@ ad_platform_addfav:
     path:       /add-to-favorite/{id}
     defaults:    {_controller: ADPlatformBundle:Cars:addFav}
     
+ad_plaform_delete:
+    path:       /delete/{id}
+    defaults:    {_controller: ADPlatformBundle:Cars:deleteCar}
