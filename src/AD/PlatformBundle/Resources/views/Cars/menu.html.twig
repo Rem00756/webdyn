@@ -12,7 +12,7 @@
             <br />
             {% if app.user == cars.user %}
                 <a href="{{path('ad_plaform_delete',{id:cars.id})}}"><img src="{{asset('img/delete.png')}}" alt="" /></a>
-                <a href="#"><img src="{{asset('img/edit.png')}}" alt="" /></a>
+                <a href="{{path('ad_platform_editcar', {id:cars.id})}}"><img src="{{asset('img/edit.png')}}" alt="" /></a>
             {% endif %}    
       </div>
     </li>

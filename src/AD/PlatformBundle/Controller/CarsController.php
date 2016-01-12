@@ -50,37 +50,30 @@ class CarsController extends Controller
             'form' =>$form->createView(),
         ));
     }
-    public function editCarAction(Request $request)
+    
+    public function editCarAction($id, Request $request)
     {
-        $cars = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('ADPlatformBundle:Cars')
-            ->find($id)
-          ;
-
-          // Et on construit le formBuilder avec cette instance de l'annonce, comme précédemment
-          $formBuilder = $this->get('form.factory')->createBuilder('form', $advert);
-                
-                
-        $form->handleRequest($request);
+        $request = $this->get('request');
         
+        $em = $this->getDoctrine()->getEntityManager();
+        $car = $em->getRepository('ADPlatformBundle:Cars')->find($id);
+        $form = $this->createForm(new CarsType(), $car);
+        $form->handleRequest($request);
+       
+       
         if($form->isValid())
         {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($cars);
             $em->flush();
-            
-            $request->getSession()->getFlashBag()->add('notice', 'Annonce enregistrée ! :)');
-            return $this->redirect($this->generateUrl('ad_platform_mycars', array('id'=>$cars->getId())));
+        
+            return $this->render('ADPlatformBundle:Cars:mycars.html.twig');
         }
         
-       
-        
-        
-        return $this->render('ADPlatformBundle:Cars:newcar.html.twig', array(
-            'form' =>$form->createView(),
+        return $this->render('ADPlatformBundle:Cars:editcars.html.twig', array (
+            'form'=> $form->createView()
         ));
+       
     }
+    
     public function deleteCarAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();

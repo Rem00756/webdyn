@@ -1,5 +1,5 @@
 va_platform_home:
-    path: /home
+    path: /
     defaults: {_controller : VAPlatformBundle:Default:index}
 
 va_platform_search:
@@ -20,3 +20,7 @@ va_platform_login:
     path: /login1
     defaults: {_controller : VAPlatformBundle:Default:login}
 
+EndroidQrCodeBundle:
+    resource:   "@EndroidQrCodeBundle/Controller/"
+    type:       annotation
+    prefix:     /qrcode

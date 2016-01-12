@@ -41,7 +41,10 @@
                                     <li>Carrosserie : {{voiture.bodytype}}</li>
                                     <li>Description : {{voiture.description}}</li>
                                 </ul>
-                            <div class="text-center" id="qrcode"></div> 
+                            
+                            <div class="text-center">
+                                <img src="{{ qrcode_url(app.request.getUri()|trim('/'), extension='png') }}" />
+                            </div>
                             <div class="text-right">
                                 <img src="{{asset('img/print.png')}}" alt="print" onclick="javascript:window.print()"/>
                                 <img src="{{asset('img/warning.png')}}" alt="Erreur"/>

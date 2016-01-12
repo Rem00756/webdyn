@@ -15,7 +15,7 @@ ad_platform_newcar:
     defaults: { _controller: ADPlatformBundle:Cars:newCar }
 
 ad_platform_editcar:
-    path:       /admin/editcar
+    path:       /admin/editcar/{id}
     defaults:   {_controller: ADPlatformBundle:Cars:editCar}
     
 ad_platform_addfav:

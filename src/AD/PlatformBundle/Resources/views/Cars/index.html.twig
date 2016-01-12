@@ -16,7 +16,7 @@
             
             
             
-            <p  id="plusde" class="text-right">Plus de voiture ... </p>
+            <a href="{{path('ad_platform_mycars')}}"><p  id="plusde" class="text-right">Plus de voiture ... </p></a>
         </div>    
     </div>
     <div class="row">
@@ -25,7 +25,7 @@
             
             {{render(controller("ADPlatformBundle:Cars:menufav"))}}
             
-            <h5 id="plusde" class="text-right">Plus de favoris ...</h5>
+            <a href="{{path('ad_platform_myfavs')}}"><h5 id="plusde" class="text-right">Plus de favoris ...</h5></a>
         </div>    
     </div>
 {% endblock %}

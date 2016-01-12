@@ -3,6 +3,8 @@
 namespace AD\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Cars
@@ -38,6 +40,16 @@ class Cars
      * @var integer
      *
      * @ORM\Column(name="year", type="integer")
+     * @Assert\LessThan(
+     *          value = 1990
+     * )
+     * @Assert\GreaterThan(
+     *          value = 1800
+     * )
+     * @Assert\Length(
+     *          min = 4,
+     *          max = 4
+     * )
      */
     private $year;
 
@@ -45,6 +57,13 @@ class Cars
      * @var integer
      *
      * @ORM\Column(name="displacement", type="integer")
+     * @Assert\Length(
+     *          min = 4,
+     *          max = 5
+     * )
+     * @Assert\GreaterThan(
+     *          value = 0
+     * )
      */
     private $displacement;
 

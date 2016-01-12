@@ -20,7 +20,9 @@ class CarsType extends AbstractType
             ->add('year')
             ->add('displacement')
             ->add('bodytype')
-            ->add('fuel')
+            ->add('fuel', 'choice', array(
+                'choices' => array('Essence 95'=>'Essence 95','Essence 98'=>'Essence 98' , 'Diesel' => 'Diesel')
+            ))
             ->add('description')
             ->add('image',          new ImageType(), array('required' => false))
             ->add('save',           'submit')
