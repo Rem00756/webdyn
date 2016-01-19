@@ -35,7 +35,7 @@
                             Pour lire un QR Code, il suffit de lancer l'application de lecture et viser le code dans le mobile.
                             <br/>
                             Exemple:</p>
-                            <div class="text-center" id="qrcode"></div>
+                            <img src="{{ qrcode_url(app.request.getUri()|trim('/'), extension='png') }}" />
                         </li>
                     </ul>
                 </div>

@@ -40,7 +40,14 @@
                         </div>   
                         <div id="resultat_voiture" class="col-md-9">
                             <div id="resulat_1" class="row">
-                                {%include 'ADPlatformBundle:Cars:menu.html.twig'%}
+                                {% for listCar in listCars %}
+                                    {%include 'ADPlatformBundle:Cars:menu.html.twig'%}
+                                {% else %}
+                                    <h3>Pas de resultat</h3>
+                                    <p>Votre modèle n'est pas dans notre base de donnée ? N'hésitez pas à l'encoder !</p>
+                                    <a href="{{path('ad_platform_newcar')}}"><button type="button" class="btn btn-success">Nouvelle voiture</button></a>
+                                {% endfor %}
+                                
                             </div>
                             
                         </div>

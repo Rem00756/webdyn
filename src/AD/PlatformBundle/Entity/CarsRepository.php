@@ -15,10 +15,10 @@ class CarsRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder('c');
         
         $qb
-                ->where('c.name LIKE :motcle')
-                ->setParameter('motcle', $motcle)
-                ;
-    
+            ->where($qb->expr()->like('c.name', ':motcle'))
+            ->setParameter('motcle', "%".$motcle."%")
+            ;
+        //Utilisation du querybuilder. Utilisation de la fonction expr() pour les 'where" un peu plus compliqué comme ici le like.
         return $qb
                 ->getQuery()
                 ->getResult()
