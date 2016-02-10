@@ -3,7 +3,15 @@
 {% extends "VAPlatformBundle::layout.html.twig" %}
 
 {% block title %}
-    Car | {{parent()}}
+   {{voiture.name}} {{voiture.model}}  | {{parent()}}
+{% endblock %}
+
+{% block meta_og %} 
+    <meta property="og:url"                content="http://qrcar.be{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" />
+    <meta property="og:type"               content="product.item" />
+    <meta property="og:title"              content="Plus d'infos {{voiture.name}} {{voiture.model}} sur QrCar.be !" />
+    <meta property="og:description"        content="{{voiture.name}} {{voiture.model}}" />
+    <meta property="og:image"              content="http://qrcar.be{{asset(voiture.image)}}" /> 
 {% endblock %}
 
 {% block body %}
@@ -35,19 +43,25 @@
                                 <ul>
                                     <li>Marque : {{voiture.name}}</li>
                                     <li>Modèle : {{voiture.model}}</li>
-                                    <li>Fuel : {{voiture.fuel}}</li>
                                     <li>Année : {{voiture.year}}</li>
+                                    <li>Moteur : {{voiture.motor}}</li>
                                     <li>Cylindrée : {{voiture.displacement}} cm³</li>
+                                    <li>Puissance : {{voiture.power}} ch</li>
+                                    <li>Fuel : {{voiture.fuel}}</li>
+                                    <li>Transmission : {{voiture.transmission}}</li>
+                                    <li>Vitesse max : {{voiture.vmax}} km/h</li>
                                     <li>Carrosserie : {{voiture.bodytype}}</li>
+                                    <li>Longueur : {{voiture.heigth}} cm</li>
+                                    <li>Largeur : {{voiture.width}} cm</li>
                                     <li>Description : {{voiture.description}}</li>
                                 </ul>
-                            
-                            <div class="text-center">
+                            <h4 id="qrcode_info">Plus d'infos ? Scannez le QrCode ci dessous !</h4>
+                            <div class="text-center qrcode">
                                 <img src="{{ qrcode_url(app.request.getUri()|trim('/'), extension='png') }}" />
                             </div>
-                            <div class="text-right">
+                            <div class="text-right racc_voit">
                                 <img src="{{asset('img/print.png')}}" alt="print" onclick="javascript:window.print()"/>
-                                <img src="{{asset('img/warning.png')}}" alt="Erreur"/>
+                                <a id="show"><img src="{{asset('img/warning.png')}}" alt="Erreur"/></a>
                                 <a 
                                     href="  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                                 {{ path('ad_platform_addfav', {'id': voiture.id}) }}
@@ -56,19 +70,28 @@
                                             {% endif %}">
                                     <img src="{{asset('img/favourite.png')}}" alt="Favoris" />
                                 </a>
-                                    
+                                <dialog id="window">  
+                                    <h3>Signaler cette voiture ?</h3>  
+                                    <p>Si vous signalez cette voiture, l'annonce va être examinée par un modérateur.</p>
+                                    <a href="{{ path('ad_platform_report', {'id': voiture.id}) }}"><button>Oui</button></a>  
+                                    <button id="exit">Non</button>  
+                                </dialog>  
                             </div>
+                        <div class="fb-share-button" data-href="http://qrcar.be{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" data-layout="button"></div>          
                         </div>
                     </div>
                     </div>
                 </div>
-                <div class="row text-center">
-
-
-                </div>
             </div>
         </section>
-        
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.5";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>    
     {% endblock %}
 {% endblock %}
     

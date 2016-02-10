@@ -22,7 +22,7 @@
                 <div id="faq">
                     <ul>
                         <li>
-                            <h3>Quel est le but de "Vos ancêtre.be" ?</h3>
+                            <h3>Quel est le but de "QrCar.be" ?</h3>
                             <p>Le premier but est de regrouper le maximum d'information de voiture ancienne 
                             pour que l'amateur puisse y trouver rapidement les informations qu'il cherche.
                             Le second but est lors de concentration de voiture, le propriétaire pourra a l'aide
@@ -35,7 +35,22 @@
                             Pour lire un QR Code, il suffit de lancer l'application de lecture et viser le code dans le mobile.
                             <br/>
                             Exemple:</p>
-                            <img src="{{ qrcode_url(app.request.getUri()|trim('/'), extension='png') }}" />
+                            <div id="logo_app">
+                                <img src="{{ qrcode_url(app.request.getUri()|trim('/'), extension='png') }}" />
+                            </div>
+                        </li>
+                        <li>
+                            <h3>Avec quelle application ?</h3>
+                            <p>Il y a une multitude d'application gratuite et rapide à installer : <br />
+                            <div id="logo_app">
+                                <a href="https://play.google.com/store/apps/details?id=la.droid.qr&hl=fr"><img src="{{asset('img/android.png')}}" alt="" /></a>
+                                <a href="https://itunes.apple.com/us/app/scanner-qr-code-reader-app/id834854351?mt=8"><img src="{{asset('img/apple.png')}}" alt="" /></a>
+                            </div>
+                                </p>
+                        </li>
+                        <li>
+                            <h3>Une question ? </h3>
+                            <p>Voici notre email ? <a href="mailto:info@qrcar.be">info@qrcar.be</a></p>
                         </li>
                     </ul>
                 </div>

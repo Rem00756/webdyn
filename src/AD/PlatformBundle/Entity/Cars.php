@@ -35,13 +35,29 @@ class Cars
      * @ORM\Column(name="model", type="string", length=255)
      */
     private $model;
+    
+    /**
+     *
+     * @var string
+     * @ORM\Column(name="motor", type="string", length=255)
+     */
+    private $motor;
+
+    /**
+     *
+     * @var integer
+     * 
+     * @ORM\Column(name="power", type="integer")
+     */
+    private $power;
+
 
     /**
      * @var integer
      *
      * @ORM\Column(name="year", type="integer")
      * @Assert\LessThan(
-     *          value = 1990
+     *          value = 2017
      * )
      * @Assert\GreaterThan(
      *          value = 1800
@@ -82,6 +98,33 @@ class Cars
     private $fuel;
 
     /**
+     *
+     * @var string
+     * @ORM\Column(name="transmission", type="string", length=255)
+     */
+    private $transmission;
+    
+    /**
+     *
+     * @var integer
+     * @ORM\Column(name="heigth", type="integer")
+     */
+    private $heigth;
+    
+    /**
+     *
+     * @var integer
+     * @ORM\Column(name="width", type="integer")
+     */
+    private $width;
+    
+    /**
+     *
+     * @var integer
+     * @ORM\Column(name="vmax", type="integer")
+     */
+    private $vmax;
+    /**
      * @var string
      *
      * @ORM\Column(name="description", type="text")
@@ -91,6 +134,7 @@ class Cars
     /**
      *
      * @ORM\OneToOne(targetEntity="AD\PlatformBundle\Entity\Image", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $image;
     
@@ -99,6 +143,13 @@ class Cars
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+    
+    /**
+     *
+     * @var boolean
+     * @ORM\Column(name="report", type="boolean", options={"default": false})
+     */
+    private $report;
 
     /**
      * Get id
@@ -326,5 +377,173 @@ class Cars
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set motor
+     *
+     * @param string $motor
+     *
+     * @return Cars
+     */
+    public function setMotor($motor)
+    {
+        $this->motor = $motor;
+
+        return $this;
+    }
+
+    /**
+     * Get motor
+     *
+     * @return string
+     */
+    public function getMotor()
+    {
+        return $this->motor;
+    }
+
+    /**
+     * Set power
+     *
+     * @param integer $power
+     *
+     * @return Cars
+     */
+    public function setPower($power)
+    {
+        $this->power = $power;
+
+        return $this;
+    }
+
+    /**
+     * Get power
+     *
+     * @return integer
+     */
+    public function getPower()
+    {
+        return $this->power;
+    }
+
+    /**
+     * Set transmission
+     *
+     * @param string $transmission
+     *
+     * @return Cars
+     */
+    public function setTransmission($transmission)
+    {
+        $this->transmission = $transmission;
+
+        return $this;
+    }
+
+    /**
+     * Get transmission
+     *
+     * @return string
+     */
+    public function getTransmission()
+    {
+        return $this->transmission;
+    }
+
+    /**
+     * Set heigth
+     *
+     * @param integer $heigth
+     *
+     * @return Cars
+     */
+    public function setHeigth($heigth)
+    {
+        $this->heigth = $heigth;
+
+        return $this;
+    }
+
+    /**
+     * Get heigth
+     *
+     * @return integer
+     */
+    public function getHeigth()
+    {
+        return $this->heigth;
+    }
+
+    /**
+     * Set width
+     *
+     * @param integer $width
+     *
+     * @return Cars
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+
+        return $this;
+    }
+
+    /**
+     * Get width
+     *
+     * @return integer
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /**
+     * Set vmax
+     *
+     * @param integer $vmax
+     *
+     * @return Cars
+     */
+    public function setVmax($vmax)
+    {
+        $this->vmax = $vmax;
+
+        return $this;
+    }
+
+    /**
+     * Get vmax
+     *
+     * @return integer
+     */
+    public function getVmax()
+    {
+        return $this->vmax;
+    }
+
+    /**
+     * Set report
+     *
+     * @param boolean $report
+     *
+     * @return Cars
+     */
+    public function setReport($report)
+    {
+        $this->report = $report;
+
+        return $this;
+    }
+
+    /**
+     * Get report
+     *
+     * @return boolean
+     */
+    public function getReport()
+    {
+        return $this->report;
     }
 }

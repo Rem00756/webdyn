@@ -31,3 +31,28 @@ $('.bxslider').bxSlider({
     auto: 'true'
 });
 $('#qrcode').qrcode();
+
+ $(function() {
+    $( "#dialog-confirm" ).dialog({
+      resizable: false,
+      height:140,
+      modal: true,
+      buttons: {
+        "Delete all items": function() {
+          $( this ).dialog( "close" );
+        },
+        Cancel: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+  });
+  (function() {  
+    var dialog = document.getElementById('window');  
+    document.getElementById('show').onclick = function() {  
+        dialog.show();  
+    };  
+    document.getElementById('exit').onclick = function() {  
+        dialog.close();  
+    };  
+})(); 

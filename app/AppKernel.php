@@ -20,7 +20,9 @@ class AppKernel extends Kernel
             new AD\PlatformBundle\ADPlatformBundle(),
             new AD\UserBundle\ADUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Endroid\Bundle\QrCodeBundle\EndroidQrCodeBundle()
+            new Endroid\Bundle\QrCodeBundle\EndroidQrCodeBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle()
             
         );
 

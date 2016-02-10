@@ -18,6 +18,10 @@ ad_platform_editcar:
     path:       /admin/editcar/{id}
     defaults:   {_controller: ADPlatformBundle:Cars:editCar}
     
+ad_platform_editcaradmin:
+    path:       /admin/editcaradmin/{id}
+    defaults:   {_controller: ADPlatformBundle:Cars:editCarAdmin}
+    
 ad_platform_addfav:
     path:       /add-to-favorite/{id}
     defaults:    {_controller: ADPlatformBundle:Cars:addFav}
@@ -25,3 +29,13 @@ ad_platform_addfav:
 ad_plaform_delete:
     path:       /delete/{id}
     defaults:    {_controller: ADPlatformBundle:Cars:deleteCar}
+
+ad_platform_listcar: 
+    path:       /admin/listreport
+    defaults:   {_controller: ADPlatformBundle:Cars:myReportList}
+    
+ad_platform_report:
+    path:       /report/{id}
+    defaults:   {_controller: ADPlatformBundle:Cars:report}
+
+

@@ -23,7 +23,9 @@
         "winzou/console-bundle": "1.*",
         "coresphere/console-bundle": "^0.4.0",
         "endroid/qrcode-bundle": "^1.6",
-        "endroid/qrcode": "^1.5"
+        "endroid/qrcode": "^1.5",
+        "liip/imagine-bundle": "^1.4",
+        "knplabs/knp-paginator-bundle": "^2.5"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

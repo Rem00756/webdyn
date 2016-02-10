@@ -17,14 +17,32 @@ class DefaultController extends Controller
     {
         $motcle = $request->query->get('formHome');
         
+        if ($motcle == null)
+        {   
+            $listCars = $this   ->getDoctrine()
+                                ->getManager()
+                                ->getRepository('ADPlatformBundle:Cars')
+                                ->findBy(array(), array('id' => 'DESC'));
+            $paginator = $this->get('knp_paginator');
+            $pagination = $paginator->paginate(
+                    $listCars,
+                    $request->query->getInt('page', 1),
+                    2
+                    );
+  
+            return $this->render('VAPlatformBundle:Default:research.html.twig', ['listCars'=> $listCars, 'pagination' => $pagination]);
+        }
+        else
+        {
+            $listCars = $this   ->getDoctrine()
+                                ->getManager()
+                                ->getRepository('ADPlatformBundle:Cars')
+                                ->findByMotCle($motcle);
+
+
+            return $this->render('VAPlatformBundle:Default:research.html.twig', ['listCars' => $listCars]); 
+        }
         
-        $listCars = $this->getDoctrine()
-        ->getManager()
-        ->getRepository('ADPlatformBundle:Cars')
-        ->findByMotCle($motcle);
-        
-        
-        return $this->render('VAPlatformBundle:Default:research.html.twig', ['listCars' => $listCars]);
     }
     
     public function carAction($id)
@@ -51,4 +69,11 @@ class DefaultController extends Controller
     {
         return $this->render('VAPlatformBundle:Default:register.html.twig');
     }
+    
+    public function waitAction()
+    {
+        return $this->render('VAPlatformBundle:Default:wait.html.twig');
+    }
+    
+    
 }

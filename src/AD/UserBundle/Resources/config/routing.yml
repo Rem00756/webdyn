@@ -1,0 +1,7 @@
+us_userform_listusers:
+    path:       /admin/listusers
+    defaults:    {_controller: ADUserBundle:User:users}
+us_userbundle_edit:
+    path:    admin/edituser/{id}
+    defaults: { _controller: ADUserBundle:User:editUser }
+    

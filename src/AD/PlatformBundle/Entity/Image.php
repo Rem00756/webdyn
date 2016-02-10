@@ -4,7 +4,7 @@ namespace AD\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Image
  *
@@ -37,7 +37,22 @@ class Image
      */
     private $alt;
     
+    /**
+     * @var File
+     *  
+     * @Assert\File(
+     *     maxSize = "5M",
+     *     mimeTypes = {
+     *          "image/jpeg", 
+     *          "image/gif", 
+     *          "image/png", 
+     *          },
+     *     maxSizeMessage = "The maxmimum allowed file size is 5MB.",
+     *     mimeTypesMessage = "Seulement les fichiers .jpeg / .gif /.png sont acceptés"
+     * )
+     */
     private $file;
+    
     private $tempFileName;
 
     public function getFile()
@@ -162,7 +177,7 @@ class Image
             $this->getUploadRootDir(),
             $this->id.'.'.$this->url    
         );
-        chmod($this->getUploadRootDir().'/'.$this->id.'.'.$this->url,644);
+//        chmod($this->getUploadRootDir().'/'.$this->id.'.'.$this->url,644);
     }
     
     /**

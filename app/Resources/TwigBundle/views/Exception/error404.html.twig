@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>QrCar : {{ status_text }}</title>
+  </head>
+  <body>
+    <h1>Vous êtes perdu ?</h1>
+    <h2>"{{ status_code }} {{ status_text }}".</h2>
+
+    <div>
+      <a href="{{path('va_platform_home')}}">Retour home</a>
+    </div>
+  </body>
+</html>

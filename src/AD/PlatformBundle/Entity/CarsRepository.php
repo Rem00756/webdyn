@@ -16,6 +16,8 @@ class CarsRepository extends \Doctrine\ORM\EntityRepository
         
         $qb
             ->where($qb->expr()->like('c.name', ':motcle'))
+            ->orWhere($qb->expr()->like('c.model',':motcle'))
+            ->andWhere('c.report = 0')
             ->setParameter('motcle', "%".$motcle."%")
             ;
         //Utilisation du querybuilder. Utilisation de la fonction expr() pour les 'where" un peu plus compliqué comme ici le like.
@@ -24,4 +26,19 @@ class CarsRepository extends \Doctrine\ORM\EntityRepository
                 ->getResult()
                 ;
     }
+    
+    public function findByReport()
+    {
+        $qb = $this->createQueryBuilder('c');
+        
+        $qb     
+                ->select('c')
+                ->where('c.report = 1')
+                ;
+        return $qb
+                ->getQuery()
+                ->getResult()
+                ;
+    }
+    
 }

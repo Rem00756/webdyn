@@ -1,4 +1,4 @@
-{# src/AD/PlatformBundle/Resources/views/Cars/editcars.html.twig #}
+{# src/AD/PlatformBundle/Resources/views/Cars/newcars.html.twig #}
 
 {% extends "ADPlatformBundle::layout.html.twig" %}
 
@@ -19,7 +19,7 @@
         <!-- /.row -->
         <div class="row">
             <div class="col-md-12">
-                <div class="col-md-4 col-md-offset-2">
+                <div class="col-md-5 col-md-offset-2">
                     <div class="well">
                         
                         {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
@@ -49,10 +49,36 @@
                                   {{ form_widget(form.model, {'attr': {'class': 'form-control'}}) }}
                                 </div>
                             </div> 
+                            {# MOTEUR #}
+                            <div class="form-group">
+                                {# Génération du label. #}
+                                {{ form_label(form.motor, "Moteur :", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+                                {# Affichage des erreurs pour ce champ précis. #}
+                                {{ form_errors(form.motor) }}
+
+                                <div class="col-sm-8">
+                                  {# Génération de l'input. #}
+                                  {{ form_widget(form.motor, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div> 
+                            {# PUISSANCE #}
+                            <div class="form-group">
+                                {# Génération du label. #}
+                                {{ form_label(form.power, "Puissance (ch):", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+                                {# Affichage des erreurs pour ce champ précis. #}
+                                {{ form_errors(form.power) }}
+
+                                <div class="col-sm-8">
+                                  {# Génération de l'input. #}
+                                  {{ form_widget(form.power, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div> 
                             {# YEAR#}
                             <div class="form-group">
                                 {# Génération du label. #}
-                                {{ form_label(form.year, "Année :", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                {{ form_label(form.year, "Année (yyyy):", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
 
                                 {# Affichage des erreurs pour ce champ précis. #}
                                 {{ form_errors(form.year) }}
@@ -65,7 +91,7 @@
                             {# DISPLACEMENT #}
                             <div class="form-group">
                                 {# Génération du label. #}
-                                {{ form_label(form.displacement, "Cylindrée :", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                                {{ form_label(form.displacement, "Cylindrée (cm³):", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
 
                                 {# Affichage des erreurs pour ce champ précis. #}
                                 {{ form_errors(form.displacement) }}
@@ -101,6 +127,58 @@
                                   {{ form_widget(form.fuel, {'attr': {'class': 'form-control'}}) }}
                                 </div>
                             </div> 
+                            {# TRANSMISSION #}
+                            <div class="form-group">
+                                {# Génération du label. #}
+                                {{ form_label(form.transmission, "Transmission :", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+                                {# Affichage des erreurs pour ce champ précis. #}
+                                {{ form_errors(form.transmission) }}
+
+                                <div class="col-sm-8">
+                                  {# Génération de l'input. #}
+                                  {{ form_widget(form.transmission, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div> 
+                            {# LONGUEUR #}
+                            <div class="form-group">
+                                {# Génération du label. #}
+                                {{ form_label(form.heigth, "Longueur (cm):", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+                                {# Affichage des erreurs pour ce champ précis. #}
+                                {{ form_errors(form.heigth) }}
+
+                                <div class="col-sm-8">
+                                  {# Génération de l'input. #}
+                                  {{ form_widget(form.heigth, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div> 
+                            {# LARGEUR #}
+                            <div class="form-group">
+                                {# Génération du label. #}
+                                {{ form_label(form.width, "Largeur (cm):", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+                                {# Affichage des erreurs pour ce champ précis. #}
+                                {{ form_errors(form.width) }}
+
+                                <div class="col-sm-8">
+                                  {# Génération de l'input. #}
+                                  {{ form_widget(form.width, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div> 
+                            {# VMAX #}
+                            <div class="form-group">
+                                {# Génération du label. #}
+                                {{ form_label(form.vmax, "Vitesse max (km/h):", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+                                {# Affichage des erreurs pour ce champ précis. #}
+                                {{ form_errors(form.vmax) }}
+
+                                <div class="col-sm-8">
+                                  {# Génération de l'input. #}
+                                  {{ form_widget(form.vmax, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div> 
                             {# DESCRIPTION #}
                             <div class="form-group">
                                 {# Génération du label. #}
@@ -114,6 +192,10 @@
                                   {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
                                 </div>
                             </div> 
+                            <div class="hidden">
+                                {{ form_widget(form.report) }}
+                            </div>
+                             
                         {{form_end(form)}}
                     </div>
                 </div>
@@ -123,4 +205,4 @@
         <!-- /.row -->
     </div>
 {% endblock %}
-    {# empty Twig template #}
+    

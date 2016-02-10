@@ -10,7 +10,7 @@ body {
 }
 
 .text-muted {
-    color: #777;
+    color: #504E4E;
 }
 
 .text-primary {
@@ -274,6 +274,19 @@ fieldset[disabled] .btn-xl.active {
     -o-background-size: cover;
     height: 100vh;
 }
+#index_wait{
+    text-align: center;
+    color: #fff;
+    background-attachment: scroll;
+    background-image: url(../img/bg-wait.jpg);
+    background-position: center center;
+    background-repeat: none;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    height: 100vh;
+}
 
 .intro-text {
     margin-top: 20%;
@@ -327,7 +340,7 @@ fieldset[disabled] .btn-xl.active {
 section {
     padding: 100px 0;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: fixed !important;
 }
 
 section h2.section-heading {
@@ -348,17 +361,21 @@ section h3.section-subheading {
 @media(min-width:768px) {
     section {
         background-image: url("../img/street.jpg");
-        padding: 125px 0;
-         
-            
+        padding: 125px 0;     
     }
 }
 @media(min-width:384px) {
     section {
-        background-image: url("../img/street.jpg");
         padding: 125px 0;
-         
-            
+        background: url("../img/street.jpg");
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        height: 100%;
+        width: 100%;
+        background-position: center center;
+        background-repeat: no-repeat;
     }
 }
 
@@ -911,7 +928,7 @@ body {
 }
 #resultat_voiture{
     background: rgba(255, 255, 255, 0.3);
-    padding: 5px;
+    padding: 10px;
 }
 #resulat_1{
     margin-bottom: 25px;
@@ -927,3 +944,39 @@ body {
     margin-top: 10%;
     margin-bottom: 10%;
 }
+
+.rech_voiture a
+{
+    text-decoration: none;
+    color: #000;
+}
+.rech_voiture a:hover
+{
+    color: #906D28;
+}
+
+#carscontrol
+{
+    margin-top: 10px;
+}
+
+.form_index
+{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+#logo_app{
+    text-align: center;
+}
+#qrcode_info{
+    display: none;
+}
+
+dialog { 
+    z-index: 1;
+    width: 500px;  
+    background:#e8e8e8;
+    border: 1px solid #dadada;
+    font-family:sans-serif;
+    padding: 5px 10px 20px 20px;
+}  

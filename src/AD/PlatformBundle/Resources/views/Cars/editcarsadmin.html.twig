@@ -3,7 +3,7 @@
 {% extends "ADPlatformBundle::layout.html.twig" %}
 
 {% block title %}
-    Nouvelle voiture | {{parent()}}
+    Mes favoris | {{parent()}}
 {% endblock %}
 
  
@@ -27,7 +27,7 @@
                             <div class="form-group">
                                 {# Génération du label. #}
                                 {{ form_label(form.name, "Marque :", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-                                
+
                                 {# Affichage des erreurs pour ce champ précis. #}
                                 {{ form_errors(form.name) }}
 
@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 {# Génération du label. #}
                                 {{ form_label(form.model, "Nom du modèle :", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-                                
+
                                 {# Affichage des erreurs pour ce champ précis. #}
                                 {{ form_errors(form.model) }}
 
@@ -192,9 +192,19 @@
                                   {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
                                 </div>
                             </div> 
-                            <div class="hidden">
-                                {{ form_widget(form.report) }}
-                            </div>
+                            {# REPORT #}
+                            <div class="form-group">
+                                {# Génération du label. #}
+                                {{ form_label(form.report, "Report :", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+                                {# Affichage des erreurs pour ce champ précis. #}
+                                {{ form_errors(form.report) }}
+
+                                <div class="col-sm-8">
+                                  {# Génération de l'input. #}
+                                  {{ form_widget(form.report, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div> 
                         {{form_end(form)}}
                     </div>
                 </div>

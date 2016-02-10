@@ -81,17 +81,26 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="{{path('ad_platform_home')}}"><i class="fa fa-home fa-fw"></i> Accueil</a>
+                                <a href="{{path('va_platform_home')}}"><i class="fa fa-search fa-fw"></i> Recherche</a>
                             </li>
                             <li>
-                                <a href="{{path('ad_platform_mycars')}}"><i class="fa fa-car fa-fw"></i>Vos voitures</a>
+                                <a href="{{path('ad_platform_home')}}"><i class="fa fa-home fa-fw"></i> Accueil Admin</a>
                             </li>
                             <li>
-                                <a href="{{path('ad_platform_myfavs')}}"><i class="fa fa-star fa-fw"></i>Vos favoris</a>
+                                <a href="{{path('ad_platform_mycars')}}"><i class="fa fa-car fa-fw"></i> Vos voitures</a>
                             </li>
                             <li>
-                                <a href="{{path('va_platform_home')}}"><i class="fa fa-search fa-fw"></i>Recherche</a>
+                                <a href="{{path('ad_platform_myfavs')}}"><i class="fa fa-star fa-fw"></i> Vos favoris</a>
                             </li>
+                            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                            <li>
+                                <a href="{{path('us_userform_listusers')}}"><i class="fa fa-user fa-fw"></i> Liste des utilisateurs</a>
+                            </li>
+                            <li>
+                                <a href="{{path('ad_platform_listcar')}}"><i class="fa fa-exclamation-triangle fa-fw"></i> Liste des reports</a>
+                                
+                            </li>
+                            {% endif %}
                         </ul>
                     </div>
                     <!-- /.sidebar-collapse -->

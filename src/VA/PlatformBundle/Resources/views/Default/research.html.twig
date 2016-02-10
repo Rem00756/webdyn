@@ -20,6 +20,16 @@
                         <h2 class="section-heading">Recherche</h2>
                     </div>
                 </div>
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- QrCarResearch -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-6689823655502501"
+                             data-ad-slot="2587863271"
+                             data-ad-format="auto"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
                 <div class="row">
                     <div class="col-md-12">
                         <div id="zone_recherche" class="col-md-3">
@@ -29,27 +39,27 @@
                                     <input type="text" class="form-control" name="formHome" autofocus>
                                     
                                     <button type="submit" id="button_recherche" class="btn btn-default btn-lg">
-                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Go!
+                                        <span class="fa fa-search" aria-hidden="true"></span> Go!
                                     </button>
                                 </form>
                             </div>
-                            
-
-                            
-
                         </div>   
                         <div id="resultat_voiture" class="col-md-9">
-                            <div id="resulat_1" class="row">
-                                {% for listCar in listCars %}
-                                    {%include 'ADPlatformBundle:Cars:menu.html.twig'%}
+                            <div id="resulat_1" class="row col-md-12">
+                                {% if listCars|length %}
+                                    {% for cars in pagination %}
+                                        {%include 'ADPlatformBundle:Cars:menu.html.twig'%}
+                                    {% endfor %}
                                 {% else %}
                                     <h3>Pas de resultat</h3>
                                     <p>Votre modèle n'est pas dans notre base de donnée ? N'hésitez pas à l'encoder !</p>
                                     <a href="{{path('ad_platform_newcar')}}"><button type="button" class="btn btn-success">Nouvelle voiture</button></a>
-                                {% endfor %}
+                                {% endif %}
                                 
                             </div>
-                            
+                                <div class="navigation">
+                                    {{knp_pagination_render(pagination)}}
+                                </div>
                         </div>
                     </div>
                 </div>
