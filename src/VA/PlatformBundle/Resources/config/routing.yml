@@ -7,10 +7,8 @@ va_platform_search:
     defaults: {_controller : VAPlatformBundle:Default:research}
 
 va_platform_car:
-    path: /car/{id}
-    defaults: {_controller : VAPlatformBundle:Default:car, id: 1}
-    requirements:
-        id: \d+
+    path: /car/{slugurl}
+    defaults: {_controller : VAPlatformBundle:Default:car}
 
 va_platform_faq:
     path: /faq
@@ -20,6 +18,10 @@ va_platform_login:
     path: /login1
     defaults: {_controller : VAPlatformBundle:Default:login}
 
+va_platform_blog:
+    path: /blog
+    defaults:  {_controller : VAPlatformBundle:Default:blog}
+    
 va_platform_wait:
     path: /wait
     defaults:  {_controller : VAPlatformBundle:Default:wait}

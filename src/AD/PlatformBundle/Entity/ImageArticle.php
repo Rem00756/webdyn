@@ -1,0 +1,257 @@
+<?php
+
+namespace AD\PlatformBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+use AD\PlatformBundle\Entity\Article;
+
+/**
+ * ImageArticle
+ *
+ * @ORM\Table()
+ * @ORM\Entity()
+ * @ORM\HasLifecycleCallbacks
+ */
+class ImageArticle
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255)
+     */
+    private $url;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alt", type="string", length=255)
+     */
+    private $alt;
+
+    /**
+     * @var File
+     *  
+     * @Assert\File(
+     *     maxSize = "1M",
+     *     mimeTypes = {
+     *          "image/jpeg", 
+     *          "image/gif", 
+     *          "image/png", 
+     *          },
+     *     maxSizeMessage = "La taille maximum du fichier doit etre inférieur ou égale à 1MB. Pour reduire sa taille vous pouvez utiliser le site : compressjpeg.com",
+     *     mimeTypesMessage = "Seulement les fichiers .jpeg / .gif /.png sont acceptés"
+     * )
+     */
+    private $file;
+
+    private $tempFileName;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="ImageArticle")
+     * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
+     */
+    private $article;
+    
+    public function getFile()
+    {
+        return $this->file;
+    }
+    
+    public function setFile(UploadedFile $file)
+    {
+        
+        $this->file = $file;
+        
+        if (null !== $this->url)
+        {
+            $this->tempFileName = $this->url;
+            $this->url=null;
+            $this->alt=null;
+        }
+    }
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     *
+     * @return ImageArticle
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Set alt
+     *
+     * @param string $alt
+     *
+     * @return ImageArticle
+     */
+    public function setAlt($alt)
+    {
+        $this->alt = $alt;
+
+        return $this;
+    }
+
+    /**
+     * Get alt
+     *
+     * @return string
+     */
+    public function getAlt()
+    {
+        return $this->alt;
+    }
+    
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null === $this->file)
+        {
+            return;
+        }
+        
+        
+        //On add un extension pour le fichier.
+        $this->url = $this->file->guessExtension();
+        //Le alt est le nom du fichier du client.
+        $this->alt=  $this->file->getClientOriginalName();
+        
+    }
+    
+    /**
+     * 
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     * 
+     */
+    public function upload()
+    {
+        if(null=== $this->file)
+        {
+            return;
+        }
+        
+        //Si ancien fichier on supprime
+        if(null !== $this->tempFileName)
+        {
+            $oldFile = $this->getUploadRootDir().'/'.$this->id.'.'.$this->tempFileName;
+            if (file_exists($oldFile))
+            {
+                unlink($oldFile);
+            }
+        }
+        
+        //On deplace
+        $this->file->move
+        (
+            $this->getUploadRootDir(),
+            $this->id.'.'.$this->url    
+        );
+//        chmod($this->getUploadRootDir().'/'.$this->id.'.'.$this->url,644);
+    }
+    
+    /**
+     *@ORM\PreRemove()
+     */
+    public function preRemoveUpload()
+    {
+        $this->tempFileName = $this->getUploadRootDir().'/'.$this->id.'.'.$this->url;
+    }
+    
+    /**
+     * 
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if(file_exists($this->tempFileName))
+        {
+            unlink($this->tempFileName);
+        }
+    }
+    public function getUploadDir()
+    {
+        return 'upload/img/';
+    }
+    
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+    
+    public function __toString()
+    {
+        return $this->getUploadDir().$this->id.'.'.$this->getUrl();
+    }
+
+    /**
+     * Set source
+     *
+     * @param string $source
+     *
+     * @return Image
+     */
+
+    /**
+     * Set article
+     *
+     * @param \AD\PlatformBundle\Entity\Article $article
+     *
+     * @return ImageArticle
+     */
+    public function setArticle(\AD\PlatformBundle\Entity\Article $article = null)
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+
+    /**
+     * Get article
+     *
+     * @return \AD\PlatformBundle\Entity\Article
+     */
+    public function getArticle()
+    {
+        return $this->article;
+    }
+}

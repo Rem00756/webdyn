@@ -33,7 +33,10 @@
                     <div class="col-md-12">
                         <div class="col-md-6">
                             <ul class="bxslider">
-                                <li><img src="{{asset(voiture.image)}}"/></li>
+                                <li>
+                                    {% set img = kernelRootDir~'/../../../../../'~voiture.image~'' %}
+                                    <img src="{{ img|imagine_filter('fiche') }}" alt="{{ voiture.name}}{{ voiture.model}}" />
+                                </li>
                                 
                             </ul>
                         </div>   
@@ -53,15 +56,22 @@
                                     <li>Carrosserie : {{voiture.bodytype}}</li>
                                     <li>Longueur : {{voiture.heigth}} cm</li>
                                     <li>Largeur : {{voiture.width}} cm</li>
-                                    <li>Description : {{voiture.description}}</li>
+                                    <!--<li>Historique : {{voiture.history}}</li>-->
+                                    {% if voiture.description|length > 0 %}
+                                        <li>Description : {{voiture.description}}</li>
+                                    {% else %}
+                                        <li>Description : NC</li>
+                                    {% endif %}
                                 </ul>
                             <h4 id="qrcode_info">Plus d'infos ? Scannez le QrCode ci dessous !</h4>
                             <div class="text-center qrcode">
-                                <img src="{{ qrcode_url(app.request.getUri()|trim('/'), extension='png') }}" />
+                                <img src="{{ qrcode_url( 'http://www.qrcar.be/car/' ~ voiture.slugurl , extension='png') }}" />
                             </div>
                             <div class="text-right racc_voit">
                                 <img src="{{asset('img/print.png')}}" alt="print" onclick="javascript:window.print()"/>
-                                <a id="show"><img src="{{asset('img/warning.png')}}" alt="Erreur"/></a>
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <a id="show"><img src="{{asset('img/warning.png')}}" alt="Erreur"/></a>
+                                {% endif %}
                                 <a 
                                     href="  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                                 {{ path('ad_platform_addfav', {'id': voiture.id}) }}
@@ -70,12 +80,12 @@
                                             {% endif %}">
                                     <img src="{{asset('img/favourite.png')}}" alt="Favoris" />
                                 </a>
-                                <dialog id="window">  
+                                <div id="window">  
                                     <h3>Signaler cette voiture ?</h3>  
                                     <p>Si vous signalez cette voiture, l'annonce va être examinée par un modérateur.</p>
                                     <a href="{{ path('ad_platform_report', {'id': voiture.id}) }}"><button>Oui</button></a>  
                                     <button id="exit">Non</button>  
-                                </dialog>  
+                                </div>  
                             </div>
                         <div class="fb-share-button" data-href="http://qrcar.be{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" data-layout="button"></div>          
                         </div>
@@ -85,13 +95,15 @@
             </div>
         </section>
     <div id="fb-root"></div>
-    <script>(function(d, s, id) {
+    <script>
+        (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
       js = d.createElement(s); js.id = id;
       js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.5";
       fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>    
+    }(document, 'script', 'facebook-jssdk'));
+    </script>    
     {% endblock %}
 {% endblock %}
     

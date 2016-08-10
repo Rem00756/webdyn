@@ -4,7 +4,7 @@ namespace AD\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Cars
@@ -74,7 +74,7 @@ class Cars
      *
      * @ORM\Column(name="displacement", type="integer")
      * @Assert\Length(
-     *          min = 4,
+     *          min = 3,
      *          max = 5
      * )
      * @Assert\GreaterThan(
@@ -127,7 +127,13 @@ class Cars
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="history", type="text", nullable=true)
+     */
+    private $history = 'test';
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
     
@@ -146,11 +152,26 @@ class Cars
     
     /**
      *
-     * @var boolean
-     * @ORM\Column(name="report", type="boolean", options={"default": false})
+     * @var integer
+     * @ORM\Column(name="report", type="integer")
      */
-    private $report;
-
+    private $report = 0;
+    
+    /**
+     *
+     * @var boolean
+     * 
+     * @ORM\Column(name="droit_photo", type="boolean", options={"default": false})
+     * @Assert\NotBlank()
+     */
+    private $droit_photo;
+    
+    /**
+     * @Gedmo\Slug(fields={"name","model","year"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slugurl;
+    
     /**
      * Get id
      *
@@ -545,5 +566,86 @@ class Cars
     public function getReport()
     {
         return $this->report;
+    }
+
+    /**
+     * Set droitPhoto
+     *
+     * @param boolean $droitPhoto
+     *
+     * @return Cars
+     */
+    public function setDroitPhoto($droitPhoto)
+    {
+        $this->droit_photo = $droitPhoto;
+
+        return $this;
+    }
+
+    /**
+     * Get droitPhoto
+     *
+     * @return boolean
+     */
+    public function getDroitPhoto()
+    {
+        return $this->droit_photo;
+    }
+
+    /**
+     * Set slugurl
+     *
+     * @param string $slugurl
+     *
+     * @return Cars
+     */
+
+
+    /**
+     * Set slugurl
+     *
+     * @param string $slugurl
+     *
+     * @return Cars
+     */
+    public function setSlugurl($slugurl)
+    {
+        $this->slugurl = $slugurl;
+
+        return $this;
+    }
+
+    /**
+     * Get slugurl
+     *
+     * @return string
+     */
+    public function getSlugurl()
+    {
+        return $this->slugurl;
+    }
+
+    /**
+     * Set history
+     *
+     * @param string $history
+     *
+     * @return Cars
+     */
+    public function setHistory($history)
+    {
+        $this->history = $history;
+
+        return $this;
+    }
+
+    /**
+     * Get history
+     *
+     * @return string
+     */
+    public function getHistory()
+    {
+        return $this->history;
     }
 }

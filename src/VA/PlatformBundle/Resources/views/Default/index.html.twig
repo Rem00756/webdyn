@@ -26,16 +26,17 @@
             <div class="container">
                 <div class="intro-text">
                     <div class="intro-lead-in">Bienvenue sur QrCar !</div>
+                    <h3>Nous avons {{voiture|length}} voitures référencées !</h3>
                     <div class="col-md-12 form_index">
                         <form action="{{ path('va_platform_search')}}" method="get">
-                            <input type="text" class="form-control" name="formHome" autofocus>
+                            <input placeholder="Une marque, un modèle ?" type="text" class="form-control" name="formHome" autofocus>
                             
                             <button type="submit" id="button_recherche" class="btn btn-default btn-lg">
                                 <i class="fa fa-search"></i> Go!
                             </button>
                         </form>
                     </div>
-                    <div class="intro-heading">Trouver votre voiture !</div>
+                    <div class="intro-heading">Trouvez votre voiture !</div>
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- QrCar -->
                     <ins class="adsbygoogle"

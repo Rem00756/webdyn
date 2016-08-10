@@ -1,0 +1,11 @@
+
+<ul class="nav nav-pills nav-stacked">
+  {% for cars in listCars %}
+        {% if cars.report == false %}
+            <div class="text-center qrcode">
+                <h2>QrCode de {{cars.name ~ cars.model}}</h2>
+                <img src="{{ qrcode_url( 'http://www.qrcar.be/car/' ~ cars.slugurl , extension='png') }}" />
+            </div>
+        {% endif %}
+  {% endfor %}
+</ul>

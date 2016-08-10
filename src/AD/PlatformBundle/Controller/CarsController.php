@@ -3,6 +3,8 @@
 namespace AD\PlatformBundle\Controller;
 
 use AD\PlatformBundle\Entity\Cars;
+use AD\PlatformBundle\Entity\Article;
+use AD\PlatformBundle\Entity\ImageArticle;
 use AD\UserBundle\Entity\User;
 use AD\PlatformBundle\Form\CarsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,9 +18,27 @@ class CarsController extends Controller
         return $this->render('ADPlatformBundle:Cars:index.html.twig');
     }
     
-    public function myCarsAction()
+    public function myCarsAction(Request $request)
     {
-        return $this->render('ADPlatformBundle:Cars:mycars.html.twig');
+        $listCars = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('ADPlatformBundle:Cars')
+        ->findByUser(
+          array($this->getUser()),                  // Recupération via le getUser
+          array('id' => 'desc')                   // On trie par date décroissante
+          );
+      
+      $paginator = $this->get('knp_paginator');
+      $pagination = $paginator->paginate(
+              $listCars,
+              $request->query->getInt('page', 1),
+              6
+              );
+
+      return $this->render('ADPlatformBundle:Cars:mycars.html.twig', array(
+        'listCars' => $listCars,
+        'pagination' => $pagination
+      ));
     }
     
     public function myFavsAction()
@@ -35,8 +55,7 @@ class CarsController extends Controller
     {
        $cars= new Cars();
        $cars->setUser($this->getUser());
-       $form = $this->get('form.factory')->create(new \AD\PlatformBundle\Form\CarsType(), $cars);
-        
+       $form = $this->get('form.factory')->create(new \AD\PlatformBundle\Form\CarsType(), $cars); 
         if($form->handleRequest($request)->isValid())
         {
             
@@ -66,7 +85,7 @@ class CarsController extends Controller
                     ->find($id);
            
             
-            if($voiture->getUser() == $user){
+            if($voiture->getUser() == $user || $user->getRoles()[0] == 'ROLE_SUPER_ADMIN'){
 
                 $request = $this->get('request');
 
@@ -80,7 +99,7 @@ class CarsController extends Controller
                 {
                     $em->flush();
 
-                    return $this->render('ADPlatformBundle:Cars:mycars.html.twig');
+                    return $this->render('ADPlatformBundle:Cars:index.html.twig');
                 }
 
                 return $this->render('ADPlatformBundle:Cars:editcars.html.twig', array (
@@ -137,7 +156,7 @@ class CarsController extends Controller
         $voiture = $this->getDoctrine()->getManager()->getRepository('ADPlatformBundle:Cars')
                 ->find($id);
         
-        if($voiture->getUser() == $user){
+        if($voiture->getUser() == $user || $user->getRoles()[0] == 'ROLE_SUPER_ADMIN'){
         $em = $this->getDoctrine()->getManager();
         
         $cars = $this->getDoctrine()
@@ -164,14 +183,15 @@ class CarsController extends Controller
         ->getRepository('ADPlatformBundle:Cars')
         ->findByUser(
           array($this->getUser()),                  // Recupération via le getUser
-          array('id' => 'desc'),                    // On trie par date décroissante
-          $limit,                                   // On sélectionne $limit annonces
-          0                                         // À partir du premier
-      );
+          array('id' => 'desc'),                   // On trie par date décroissante
+          $limit,
+          0      
+                );
 
       return $this->render('ADPlatformBundle:Cars:menu.html.twig', array(
         'listCars' => $listCars
       ));
+      
     }
     
     public function reportlistAction()
@@ -226,7 +246,11 @@ class CarsController extends Controller
                         ->getRepository('ADPlatformBundle:Cars')
                         ->find($id);
         
-        $voiture->setReport('1');
+        $plus = $voiture->getReport();
+        
+        $plus++;
+
+        $voiture->setReport($plus);
         
         $em->persist($voiture);
         $em->flush();
@@ -248,5 +272,57 @@ class CarsController extends Controller
       return $this->render('::layout.html.twig', array(
         'listCars' => $listCars
       ));
+    }
+    public function qrcodeAction($slugurl)
+    {
+      $listCars = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('ADPlatformBundle:Cars')
+        ->findBySlugurl($slugurl);
+
+      return $this->render('ADPlatformBundle:Cars:qrcode.html.twig', array(
+        'listCars' => $listCars
+      ));
+      
+    }
+    public function newArticleAction(Request $request)
+    {
+       $article = new Article();
+       $images = new ImageArticle();
+
+       
+       $form = $this->get('form.factory')->create(new \AD\PlatformBundle\Form\ArticleType(), $article, $images);
+       
+       $form->handleRequest($request);
+
+       
+       if($form->isValid())
+       {
+           $article->setUser($this->getUser());
+           // other article fields, if needed
+           
+           foreach($images->getFile() as $image)
+           {
+               $images->setAlt($image->getAlt());
+               $images->setUrl($image->getUrl());
+               $images->setFile($image->getFile());
+
+               $images->preRemoveUpload();
+               $images->preUpload();
+               $images->upload();
+           }
+
+           $em = $this->getDoctrine()->getManager();
+           $em->persist($article);
+           $em->flush();
+
+           $request->getSession()->getFlashBag()->add('notice', 'Article publié ! :)');
+
+           return $this->redirect($this->generateUrl('va_platform_blog'));
+        }
+
+        return $this->render('ADPlatformBundle:Cars:newarticle.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

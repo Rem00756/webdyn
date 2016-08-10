@@ -36,18 +36,18 @@ class Image
      * @ORM\Column(name="alt", type="string", length=255)
      */
     private $alt;
-    
+
     /**
      * @var File
      *  
      * @Assert\File(
-     *     maxSize = "5M",
+     *     maxSize = "1M",
      *     mimeTypes = {
      *          "image/jpeg", 
      *          "image/gif", 
      *          "image/png", 
      *          },
-     *     maxSizeMessage = "The maxmimum allowed file size is 5MB.",
+     *     maxSizeMessage = "La taille maximum du fichier doit etre inférieur ou égale à 1MB. Pour reduire sa taille vous pouvez utiliser le site : compressjpeg.com",
      *     mimeTypesMessage = "Seulement les fichiers .jpeg / .gif /.png sont acceptés"
      * )
      */
@@ -213,4 +213,13 @@ class Image
     {
         return $this->getUploadDir().$this->id.'.'.$this->getUrl();
     }
+
+    /**
+     * Set source
+     *
+     * @param string $source
+     *
+     * @return Image
+     */
+   
 }

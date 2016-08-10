@@ -2,7 +2,7 @@
 
 {% extends "::layout.html.twig" %}
 
-{% block meta_description %}QrCar{% endblock %}
+{% block meta_description %}QrCar - Besoin d'informations sur un véhicule lors d'une concentration, rallye, etc ? QrCar est là pour vous !{% endblock %}
 
 {% block meta_author %}Rémi Baltus{% endblock %}
 
@@ -60,6 +60,9 @@
                                     <a class="page-scroll" href="{{path('fos_user_profile_show')}}">{{ app.user.username }}</a>
                                 </li>
                                 <li>
+                                    <a class="page-scroll" href="{{path('va_platform_blog')}}">Blog</a>
+                                </li>
+                                <li>
                                     <a class="page-scroll" href="{{path('ad_platform_mycars')}}">Mes voitures</a>
                                 </li>
                                 <li>
@@ -74,6 +77,9 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="hidden">
                                     <a href="#page-top"></a>
+                                </li>
+                                <li>
+                                    <a class="page-scroll" href="{{path('va_platform_blog')}}">Blog</a>
                                 </li>
                                 <li>
                                     <a class="page-scroll" href="{{path('fos_user_security_login')}}">S'indentifier</a>
@@ -104,9 +110,14 @@
                     </div>
                     <div class="col-md-4">
                         <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            <li>
+                                <a href="https://twitter.com/Qrcar_"><i class="fa fa-twitter"></i></a>
                             </li>
-                            <li><a href="https://www.facebook.com/qrcar/"><i class="fa fa-facebook"></i></a>
+                            <li>
+                                <a href="https://www.facebook.com/qrcar/"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/qrcar.be/"><i class="fa fa-instagram"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -148,17 +159,6 @@
     <script type="text/javascript" src="http://www.carqueryapi.com/js/jquery.min.js"></script>
     <script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.3.js"></script>
     <script type="text/javascript" src="{{asset('js/testVoiture.js')}}"></script>
-    
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-58066384-2', 'auto');
-        ga('send', 'pageview');
-
-    </script>
     
     
 {% endblock %}

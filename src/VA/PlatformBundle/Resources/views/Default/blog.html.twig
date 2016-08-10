@@ -1,0 +1,76 @@
+{# src/VA/PlatformBundle/Resources/views/Default/car.html.twig #}
+
+{% extends "VAPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+   Blog  | {{parent()}}
+{% endblock %}
+
+{% block meta_og %} 
+    <meta property="og:url"                content="http://qrcar.be{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" />
+    <meta property="og:type"               content="product.item" />
+    <meta property="og:title"              content="Plus d'infos  sur QrCar.be !" />
+    <meta property="og:description"        content="" />
+    <meta property="og:image"              content="http://qrcar.be" /> 
+{% endblock %}
+
+{% block body %}
+    {% block nav %}
+       {{parent()}} 
+    {% endblock %}
+ 
+    {% block content %}
+        <section id="services">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading"></h2>
+                        <h2 class="section-subheading text-muted"></h2>
+                        <h3 class="section-subheading text-muted"></h3>
+                    </div>
+                </div>
+                <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">Blog</h2>
+                    </div>
+                <div class="row">
+                    {% for article in pagination %}  
+                    <h2 class="service-heading text-center">{{article.titre2}}</h2>
+                    <div class="col-md-6">
+                        <ul class="bxslider">
+                            <li>
+                                {% set img = kernelRootDir~'/../../../../../'~article.imagearticle~'' %}
+                                <img src="{{ img|imagine_filter('fiche') }}" alt="cacasurunbois" />
+                            </li>  
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div id="description">
+                                <h3 class="service-heading">{{article.titre2}}</h3>
+                                {{article.description|raw}}    
+                            <h4 id="qrcode_info">Plus d'infos ? Scannez le QrCode ci dessous !</h4>
+                            <div class="text-center qrcode">
+                                <img src="" />
+                            </div>
+                                <div class="fb-share-button" data-href="http://qrcar.be{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" data-layout="button"></div>          
+                            </div>
+                        </div>
+                    </div> 
+                    {% endfor %}
+                </div>
+                <div class="navigation">
+                    {{knp_pagination_render(pagination)}}
+                </div>
+            </div>
+        </section>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.5";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>    
+    {% endblock %}
+{% endblock %}
+    

@@ -2,12 +2,13 @@
   {% for cars in app.user.favourites|slice(0,6) %}
     <li>
           <div class="col-md-4 text-center">
-                 <a href='{{path('va_platform_car',{id:cars.id})}}'>
+                 <a href='{{path('va_platform_car',{slugurl:cars.slugurl})}}'>
                     <h3>{{ cars.name}}</h3>
                     <h4>{{cars.model}}</h4>
                     <h4>{{cars.year}}</h4>
                     <h4>{{cars.displacement}} cm³</h4>
-                    <img src="{{asset(cars.image)}}" alt="" height="132" width="200"/>
+                    {% set img = kernelRootDir~'/../../../../../'~cars.image~'' %}
+                    <img src="{{ img|imagine_filter('recherche') }}" alt="{{ cars.name}}{{ cars.model}}" />
                 </a>  
           </div>
     </li>

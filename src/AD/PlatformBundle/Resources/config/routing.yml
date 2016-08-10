@@ -38,4 +38,10 @@ ad_platform_report:
     path:       /report/{id}
     defaults:   {_controller: ADPlatformBundle:Cars:report}
 
+ad_platform_qrcode:
+    path:       /qrcode/{slugurl}
+    defaults:   {_controller: ADPlatformBundle:Cars:qrcode}
 
+ad_platform_newarticle:
+    path:     /admin/newarticle
+    defaults: { _controller: ADPlatformBundle:Cars:newArticle }

@@ -179,6 +179,7 @@
                                   {{ form_widget(form.vmax, {'attr': {'class': 'form-control'}}) }}
                                 </div>
                             </div> 
+                            
                             {# DESCRIPTION #}
                             <div class="form-group">
                                 {# Génération du label. #}
@@ -192,9 +193,26 @@
                                   {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
                                 </div>
                             </div> 
+                            {# DROIT #}
+                            <div class="form-group">
+                                {# Génération du label. #}
+                                {{ form_label(form.droit_photo, "Vous êtes le propriétaire de la photo et vous acceptez que QrCar l'utilise 
+                                                                    pour promouvoir son site web via les réseaux sociaux :", {'label_attr': {'class': 'col-sm-12 control-label'}}) }}
+
+                                {# Affichage des erreurs pour ce champ précis. #}
+                                {{ form_errors(form.droit_photo) }}
+
+                                <div class="col-sm-12">
+                                  {# Génération de l'input. #}
+                                  {{ form_widget(form.droit_photo, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div> 
+                            <p class="bg-warning">Nous vous suggerons de flouter votre plaque si cette derniere est visible sur votre véhicule.</p>
                             <div class="hidden">
                                 {{ form_widget(form.report) }}
                             </div>
+                            {{ form_widget(form.image, {'attr': {'class': 'file-custom'}}) }}
+                            {{ form_widget(form.save, {'attr': {'class': 'btn btn-success btn-lg btn-block'}}) }}
                         {{form_end(form)}}
                     </div>
                 </div>

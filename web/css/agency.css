@@ -972,7 +972,8 @@ body {
     display: none;
 }
 
-dialog { 
+#window { 
+    visibility: hidden;
     z-index: 1;
     width: 500px;  
     background:#e8e8e8;
@@ -980,3 +981,11 @@ dialog {
     font-family:sans-serif;
     padding: 5px 10px 20px 20px;
 }  
+@media screen and (max-width: 600px) {
+  #window {
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+  }
+}

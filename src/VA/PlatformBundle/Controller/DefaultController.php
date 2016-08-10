@@ -10,7 +10,12 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('VAPlatformBundle:Default:index.html.twig');
+        $voiture = $this->getDoctrine()
+                            ->getManager()
+                            ->getRepository('ADPlatformBundle:Cars')
+                            ->findAll();
+                    
+        return $this->render('VAPlatformBundle:Default:index.html.twig',['voiture' => $voiture]);
     }
 
     public function researchAction(Request $request)
@@ -27,7 +32,7 @@ class DefaultController extends Controller
             $pagination = $paginator->paginate(
                     $listCars,
                     $request->query->getInt('page', 1),
-                    2
+                    6
                     );
   
             return $this->render('VAPlatformBundle:Default:research.html.twig', ['listCars'=> $listCars, 'pagination' => $pagination]);
@@ -38,22 +43,29 @@ class DefaultController extends Controller
                                 ->getManager()
                                 ->getRepository('ADPlatformBundle:Cars')
                                 ->findByMotCle($motcle);
+            $paginator = $this->get('knp_paginator');
+            $pagination = $paginator->paginate(
+                    $listCars,
+                    $request->query->getInt('page', 1),
+                    9
+                    );
+  
 
-
-            return $this->render('VAPlatformBundle:Default:research.html.twig', ['listCars' => $listCars]); 
+            return $this->render('VAPlatformBundle:Default:research.html.twig', ['listCars' => $listCars, 'pagination' => $pagination]); 
         }
         
     }
     
-    public function carAction($id)
+    public function carAction($slugurl)
     {
         $voiture = $this->getDoctrine()
                             ->getManager()
                             ->getRepository('ADPlatformBundle:Cars')
-                            ->find($id);
+                            ->findOneBySlugurl($slugurl);
                     
         return $this->render('VAPlatformBundle:Default:car.html.twig',['voiture' => $voiture]);
     }
+    
     
     public function faqAction()
     {
@@ -75,5 +87,19 @@ class DefaultController extends Controller
         return $this->render('VAPlatformBundle:Default:wait.html.twig');
     }
     
-    
+    public function blogAction(Request $request)
+    {  
+            $listCars = $this   ->getDoctrine()
+                                ->getManager()
+                                ->getRepository('ADPlatformBundle:Article')
+                                ->findBy(array(), array('id' => 'DESC'));
+            $paginator = $this->get('knp_paginator');
+            $pagination = $paginator->paginate(
+                    $listCars,
+                    $request->query->getInt('page', 1),
+                    1
+                    );
+  
+            return $this->render('VAPlatformBundle:Default:blog.html.twig', ['listCars'=> $listCars, 'pagination' => $pagination]);
+    }
 }

@@ -49,10 +49,17 @@ $('#qrcode').qrcode();
   });
   (function() {  
     var dialog = document.getElementById('window');  
+    dialog.style.visibility = "hidden";
+    dialog.style.height = "0px";
+    
     document.getElementById('show').onclick = function() {  
-        dialog.show();  
+        dialog.style.opacity=1;
+        dialog.style.visibility = "visible";  
+        dialog.style.height = "150px";
     };  
     document.getElementById('exit').onclick = function() {  
-        dialog.close();  
-    };  
+        dialog.style.opacity=0;
+        dialog.style.height = "0px";
+    };
+    
 })(); 

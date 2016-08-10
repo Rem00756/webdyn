@@ -11,8 +11,33 @@
         <div class="row">
             <div class="col-lg-12">    
                 <h3><span class="fa fa-car"></span> Vos voitures</h3>
-                 {{ render(controller("ADPlatformBundle:Cars:menu")) }}
-            </div>    
+                {% for cars in pagination %}  
+                    {% if cars.report < 5%}
+                        <div class="col-md-4 text-center rech_voiture">
+                            <a href='{{path('va_platform_car',{slugurl:cars.slugurl})}}'>
+                                <h3>{{ cars.name}}</h3>
+                                <h4>{{cars.model}}</h4>
+                                <h4>{{cars.year}}</h4>
+                                <h4>{{cars.displacement}} cm³</h4>
+                                {% set img = kernelRootDir~'/../../../../../'~cars.image~'' %}
+                                <img src="{{ img|imagine_filter('recherche') }}" alt="{{ cars.name}}{{ cars.model}}" />
+                            </a>
+                            <br />
+                            {% if (app.user == cars.user) or (is_granted('ROLE_SUPER_ADMIN')) %}
+                                <div id="carscontrol">
+                                    <a href="{{path('ad_plaform_delete',{id:cars.id})}}"><img src="{{asset('img/delete.png')}}" alt="" /></a>
+                                    <a href="{{path('ad_platform_editcar', {id:cars.id})}}"><img src="{{asset('img/edit.png')}}" alt="" /></a>
+                                    <a href="{{path('ad_platform_qrcode', {slugurl:cars.slugurl})}}" target="_blank"><img src="{{asset('img/technology.png')}}" alt="" /></a>
+                                </div>
+                            {% endif %}    
+                        </div>
+                    {% endif%}
+                {% endfor %}
+                
+            </div> 
+                <div class="navigation col-md-offset-6 ">
+                    {{knp_pagination_render(pagination)}}
+                </div>
         </div>
 {% endblock %}
 

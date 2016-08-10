@@ -84,7 +84,7 @@
                                 <a href="{{path('va_platform_home')}}"><i class="fa fa-search fa-fw"></i> Recherche</a>
                             </li>
                             <li>
-                                <a href="{{path('ad_platform_home')}}"><i class="fa fa-home fa-fw"></i> Accueil Admin</a>
+                                <a href="{{path('ad_platform_home')}}"><i class="fa fa-home fa-fw"></i> Accueil</a>
                             </li>
                             <li>
                                 <a href="{{path('ad_platform_mycars')}}"><i class="fa fa-car fa-fw"></i> Vos voitures</a>
@@ -92,16 +92,21 @@
                             <li>
                                 <a href="{{path('ad_platform_myfavs')}}"><i class="fa fa-star fa-fw"></i> Vos favoris</a>
                             </li>
-                            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        </ul>
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                            <h4> <i class="fa fa-lock fa-fw"></i>Administration</h4>
+                        <ul class="nav" id="side-menu">    
+                            <li>
+                                <a href="{{path('ad_platform_newarticle')}}"><i class="fa fa-pencil fa-fw"></i> Nouvel article</a>
+                            </li>
                             <li>
                                 <a href="{{path('us_userform_listusers')}}"><i class="fa fa-user fa-fw"></i> Liste des utilisateurs</a>
                             </li>
                             <li>
                                 <a href="{{path('ad_platform_listcar')}}"><i class="fa fa-exclamation-triangle fa-fw"></i> Liste des reports</a>
-                                
                             </li>
-                            {% endif %}
                         </ul>
+                        {% endif %}
                     </div>
                     <!-- /.sidebar-collapse -->
                 </div>
@@ -151,4 +156,16 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{asset('js/sb-admin-2.js')}}"></script>
+    
+    <!-- Collection add/remove (history)-->
+    <script src="{{ asset('bundles/acmedemo/js/jquery.collection.js') }}"></script>
+
+    <script type="text/javascript">
+        $('.my-selector').collection();
+    </script>
+    
+    <!-- Editeur de textarea -->
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
+    
 {% endblock %}
